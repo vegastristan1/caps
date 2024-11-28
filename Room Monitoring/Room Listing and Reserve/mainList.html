@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Listing and Reserve</title>
+    <!-- Load Google Fonts Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Load Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Load Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Main content -->
+    <div class="main-content p-6" id="mainContent">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb" class="breadcrumb-nav">
+            <ul class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Enrollment</a></li>
+                <li><a href="#">Rooms Monitoring</a></li>
+                <li class="active">Room Listing and Reserve</li>
+            </ul>
+        </nav>
+
+        <section class="section-header mb-20">
+            <h1 class="text-2xl font-semibold">Room Availability Information</h1>
+        </section>
+
+        <div class="form-container">
+
+            <form action="#">
+                <div class="grid grid-cols-2 md:grid-cols-2">
+
+                        <div class="left-column flex-1">
+                            <div class="form-group mb-4">
+                                <label for="schoolYear" class="block font-bold text-sm">SCHOOL YEAR</label>
+                                <div class="flex space-x-2">
+                                    <input type="text" id="year" class="p-2 border border-gray-300 rounded" placeholder="Enter">
+                                    <input type="text" id="year" class="p-2 border border-gray-300 rounded" placeholder="Enter">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="room">ROOM STATUS</label>
+                                <select id="room">
+                                    <option value="" disabled selected>Select</option>
+                                    <option value="availble">AVAILABLE</option>
+                                    <option value="occupuied">OCCUPIED</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="start-date">DATE RANGE</label> 
+                                <div class="date-picker">
+                                    <div style="display: flex;">
+                                    <input type="date" id="start-date" placeholder="Start Date">
+                                    <input type="date" id="end-date" placeholder="End Date">
+                                </div>
+                            </div>
+                        </div>
+                                <div class="form-group">
+                                    <label for="start-sched">SCHEDULE TIME</label> 
+                                    <div class="schedule-time">
+                                        <div style="display: flex;">
+                                        <input type="time" id="start-time" placeholder="Start time">
+                                        <input type="time" id="end-time" placeholder="End time">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="location">LOCATION</label>
+                                <select id="loc">
+                                    <option value="" disabled selected>ALL BUILDINGS</option>
+                                    <option value="Elm">(ELEM)</option>
+                                    <option value="main">(MAIN)</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="a">A</option>
+                                    <option value="b">B</option>
+                                    <option value="bld1">BLDG 1</option>
+                                    <option value="bld2">BLDG 2</option>
+                                    <option value="ElemBldg">Elementary Building</option>
+                                    <option value="ISBldgB">IS Building B</option>
+                                    <option value="ISBldg -B">IS Building -B</option>
+                                    <option value="ISBldg-A">IS Building-A</option>
+                                    <option value="ISBldg-B">IS Building-B</option>
+                                    <option value="ISBldgC">IS Building C</option>
+                                    <option value="ISBldg-D">IS Building-D</option>
+                                    <option value="MAIN">MAIN</option>
+                                    <option value="ColMain">Main College Building</option>
+                                    <option value="ProfBldg">Professional School Building</option>
+                                    <option value="sfm">SFM</option>
+                                    <option value="SOM">SOM</option>
+                                </select>
+                            </div>
+                        </div>
+        
+                    <div class="right-column">
+                        <div class="form-group">
+                            <label for="term">TERM</label>
+                            <select id="term">
+                                <option value="" disabled selected>Select Term</option>
+                                <option value="1st-Semester">1st Semester</option>
+                                <option value="2nd-Semester">2nd Semester</option>
+                                <option value="summer">Summer</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="room-number">ROOM NUMBER <span style="font-weight: normal; font-style: italic; color: #6c757d;">(optional)</span></label>
+                            <input type="text" id="room-number" placeholder="Enter">
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+                    <div class="form-actions mt-8 flex justify-center space-x-4">
+                        <a href="tableList.html" class="px-6 py-2 bg-blue-900 text-white rounded-md">PROCCED</a>
+                    </div>   
+                </div>            
+    <script>
+        fetch('../../Components/Navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+                // Load navbar script after inserting HTML
+                var script = document.createElement('script');
+                script.src = '../../Components/app.js';
+                document.body.appendChild(script);
+            });
+    </script>  
+</div>
+</body>
+
+</html>
+
+<style scoped>
+    .breadcrumb-nav {
+        margin: 0;
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+
+    .breadcrumb {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+    }
+
+    .breadcrumb li {
+        margin-right: 10px;
+    }
+
+    .breadcrumb li a {
+        color: #174069;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .breadcrumb li a:hover {
+        color: #20568B;
+    }
+
+    .breadcrumb li.active {
+        color: orange;
+        pointer-events: none;
+    }
+
+    .breadcrumb li::after {
+        content: ">";
+        margin-left: 10px;
+        color: #174069;
+    }
+
+    .breadcrumb li:last-child::after {
+        content: "";
+    }
+
+    .section-header {
+        background-color: #174069;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .section-header h1 {
+        color: white;
+        font-size: 24px;
+        margin: 0;
+    }
+
+    .form-container {
+        width: 100%;
+        background-color: #f4f8fc;
+        padding: 15px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        
+    }
+    .form-group {
+        margin-top: 20px;
+        margin-bottom: 15px;
+        margin-left: 40px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 10px; 
+        display: block;
+    }
+    .form-group input, .form-group select {
+        width: 50%; 
+        max-width: 400px;
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-top: 5px; 
+        margin-right: 10px;
+        gap: 10px;
+    }
+
+</style>
