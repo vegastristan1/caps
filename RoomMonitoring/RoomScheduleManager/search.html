@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Schedule Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Load Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Load Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="navbar-placeholder"></div>
+    <div class="main-content" id="mainContent">
+        <nav aria-label="breadcrumb" class="breadcrumb-nav">
+            <ul class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Enrollment</a></li>
+                <li><a href="#">Rooms Monitoring</a></li>
+                <li class="active">Room Schedule Manager</li>
+            </ul>
+        </nav>
+        <section class="section-header text-sm md:text-xl">
+            <h1>SCHEDULING PAGE</h1>
+        </section>
+
+        <!-- Form container -->
+        <div class="form-container">
+            <form>
+                <!-- Program Offered -->
+                <div class="mb-4">
+                    <label for="program-offered" class="block font-bold text-sm mb-2">PROGRAM OFFERED</label>
+                    <select id="program-offered" class="w-full p-2 border border-gray-300 rounded">
+                        <option>Select Program</option> 
+                        <option value="BSCS">Bachelor of Science in Computer Science (B.S.C.S)</option>
+                        <option value="BSEE">Bachelor of Science in Electrical Engineering(B.S.E.E)</option>
+                        <option value="BSECE">Bachelor of Science in Electronics Engineering (B.S.E.C.E)</option>
+                        <option value="Digital">Bachelor of Science in Entertainment and Multimedia Computing with Specialization in Digital Animation Technology</option>
+                        <option value="GameDev">Bachelor of Science in Entertainment and Multimedia Computing with Specialization in Game Development</option>
+                        <option value="Entrep">Bachelor of Science in Entrepreneurship</option>
+                        <option value="BSIE">Bachelor of Science in Industrial Engineering (B.S.I.E)</option>
+                        <option value="BSIS">Bachelor of Science in Information System</option>
+                        <option value="BSIT">Bachelor of Science in Information Technology</option>
+                    </select>
+                </div>
+                <div class="mb-4 flex items-center space-x-2">
+                    <div class="flex-1">
+                        <label for="year-term-from" class="block font-bold text-sm mb-2">CURRICULUM YEAR</label>
+                        <div class="flex items-center">
+                            <!-- Dropdown for Year From -->
+                            <select id="year-term-from" class="w-full p-2 border border-gray-300 rounded">
+                                <option value="" disabled selected>Select Year</option>
+                            </select>
+                            <span class="mx-2 font-bold">TO</span>
+                            <!-- Dropdown for Year To -->
+                            <select id="year-term-to" class="w-full p-2 border border-gray-300 rounded">
+                                <option value="" disabled selected>Select Year</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- School Offering Year (Two Inputs for Range) and Term -->
+                <div class="mb-4 flex items-center space-x-2">
+                    <div class="flex-1">
+                        <label for="school-year-from" class="block font-bold text-sm mb-2">SCHOOL OFFERING YEAR</label>
+                        <div class="flex items-center">
+                            <input type="text" id="school-year-from" placeholder="Enter" class="w-full p-2 border border-gray-300 rounded">
+                            <span class="mx-2 font-bold">TO</span>
+                            <input type="text" id="school-year-to" placeholder="Enter" class="w-full p-2 border border-gray-300 rounded">
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <label for="term" class="block font-bold text-sm mb-2">TERM</label>
+                        <select id="term" class="w-full p-2 border border-gray-300 rounded">
+                            <option>Select Term</option>
+                            <option>1st</option>
+                            <option>2nd</option>
+                            <option>3rd</option>
+                            <option>4th</option>
+                            <option>Summer</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Room Number -->
+                <div class="mb-4">
+                     <label for="room-number" class="block font-bold text-sm mb-2">ROOM NUMBER</label>
+                     <select id="room-number" class="w-full p-2 border border-gray-300 rounded">
+                        <option value="" disabled selected>Select Room Number</option>
+                        <option>B230</option>
+                        <option>B231</option>
+                        <option>B232</option>
+                        <option>B233</option>
+                        <option>B234</option>
+                        <option>B235</option>
+                        <option>B236</option>
+                        <option>B237</option>
+                        <option>B238</option>
+                        <option>B239</option>
+                        <option>B240</option>
+                        <option>B322</option>
+                        <option>B323</option>
+                        <option>B324</option>
+                        <option>B325</option>
+                        <option>B326</option>
+                        <option>B327</option>
+                        <option>B328</option>
+                    </select>
+                </div>
+
+                <!-- Proceed Button -->
+                <div class="flex justify-center">
+                    <a href="index.html" type="submit" style="background-color: #174069;"
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    Proceed
+                </a>
+                </div>
+            </form>
+        </div>
+
+        <div class="border-b-4 border-black my-4"></div>
+
+       <script>
+    // Fetch Navbar HTML and insert it into the page
+    fetch('/Components/Navbar.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar-placeholder').innerHTML = data;
+            // Load additional navbar script after inserting HTML
+            var script = document.createElement('script');
+            script.src = '/Components/app.js';
+            document.body.appendChild(script);
+        });
+        const programOfferedDropdown = document.getElementById('program-offered');
+        const yearFromDropdown = document.getElementById('year-term-from');
+        const yearToDropdown = document.getElementById('year-term-to');
+
+        const curriculumYears = {
+            BSCS: [
+                { from: "2004", to: "2005" },
+                { from: "2012", to: "2013" },
+                { from: "2018", to: "2019" }
+            ],
+            BSEE: [
+                { from: "1998", to: "1999" },
+                { from: "2002", to: "2003" },
+                { from: "2007", to: "2008" },
+                { from: "2012", to: "2013" },
+                { from: "2018", to: "2019" }
+            ],
+            BSECE: [
+                { from: "1998", to: "1999" },
+                { from: "2002", to: "2003" },
+                { from: "2007", to: "2008" },
+                { from: "2012", to: "2013" },
+                { from: "2018", to: "2019" }
+            ],
+        GameDev: [
+                { from: "2015", to: "2016" },
+                { from: "2018", to: "2019" }
+            ],
+            Entrep: [
+                { from: "2014", to: "2015" },
+                { from: "2018", to: "2019" }
+            ],
+            BSIE: [
+                { from: "1998", to: "1999" },
+                { from: "2002", to: "2003" },
+                { from: "2007", to: "2008" },
+                { from: "2012", to: "2013" },
+                { from: "2018", to: "2019" }
+            ],
+            BSIS: [
+                { from: "2015", to: "2016" },
+                { from: "2018", to: "2019" }
+            ],
+            BSIT: [
+                { from: "2015", to: "2016" },
+                { from: "2019", to: "2020" },
+                { from: "2020", to: "2021" }
+            ]
+        }; 
+
+    programOfferedDropdown.addEventListener('change', function() {
+        const selectedProgram = this.value;
+
+        yearFromDropdown.innerHTML = '<option value="" disabled selected>Select</option>';
+        yearToDropdown.innerHTML = '<option value="" disabled selected>Select</option>';
+
+        if (curriculumYears[selectedProgram]) {
+            curriculumYears[selectedProgram].forEach(year => {
+
+                const optionFrom = document.createElement('option');
+                optionFrom.value = year.from;
+                optionFrom.textContent = year.from;
+                yearFromDropdown.appendChild(optionFrom);
+
+                // Populate "Year To" dropdown
+                const optionTo = document.createElement('option');
+                optionTo.value = year.to;
+                optionTo.textContent = year.to;
+                yearToDropdown.appendChild(optionTo);
+            });
+        }
+    });
+        </script>
+    </div> 
+</body>
+
+</html>
+
+<!-- CSS styling -->
+<style scoped>
+    /* Breadcrumb styles */
+    .breadcrumb-nav {
+        margin: 0;
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+
+    .breadcrumb {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+    }
+
+    .breadcrumb li {
+        margin-right: 10px;
+    }
+
+    .breadcrumb li a {
+        color: #174069;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .breadcrumb li a:hover {
+        color: #20568B;
+    }
+
+    .breadcrumb li.active {
+        color: orange;
+        pointer-events: none;
+    }
+
+    .breadcrumb li::after {
+        content: ">";
+        margin-left: 10px;
+        color: #174069;
+    }
+
+    .breadcrumb li:last-child::after {
+        content: "";
+    }
+
+    /* Section Header */
+    .section-header {
+        background-color: #174069;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .section-header h1 {
+        color: white;
+        margin: 0;
+    }
+
+    /* Form styles */
+    .form-container {
+        width: 80%;
+        margin: 40px auto;
+        background-color: #f4f8fc;
+        padding: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .form-group input,.form-group select {
+        width: 80%;
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    /* Button styles */
+    .form-actions button {
+        padding: 12px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>

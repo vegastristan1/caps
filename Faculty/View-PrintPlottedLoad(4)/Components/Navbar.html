@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enrollment System</title>
+    <!-- Load Google Fonts Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Load Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.1/css/boxicons.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <!-- Hamburger Button Icon on the left side -->
+        <div class="hamburger-icon p-4 cursor-pointer" id="hamburgerIcon">
+            <i class="bx bx-menu"></i> <!-- Hamburger icon -->
+        </div>
+        <div class="logo_item">
+            <img src="../images/NEU Logo.png" alt=""> NEW ERA UNIVERSITY - NEU SYSTEM
+        </div>
+
+
+    </nav>
+
+    <!-- Sidebar Header Container (Sticky Header) -->
+    <div class="sidebar-header-container" id="sidebarHeaderContainer">
+        <div class="sidebar-header">
+
+            <!-- Collapse Toggle -->
+            <div class="sidebar-collapse-toggle" id="collapseToggle">
+                <i class="bx bx-arrow-from-right" id="collapseIcon"></i>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <!-- Sidebar header (search bar and collapse button) -->
+
+
+        <!-- Sidebar navigation -->
+        <ul class="nav_list">
+            <!-- 1. Dashboard -->
+            <li>
+                <a href="#" class="no-chevron" title="Dashboard"><i class="bx bx-home"></i><span>Dashboard</span></a>
+            </li>
+        
+            <!-- 2. Rooms Monitoring -->
+            <li>
+                <a href="#" class="dropdown-toggle" title="Employee Management">
+                    <i class="bx bx-user"></i><span>Rooms Monitoring</span>
+                    <i class="bx bx-chevron-right dropdown-icon"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="/201File/index.html">201 File</a></li>
+                    <li><a href="#">Exit Interview</a></li>
+                    <li><a href="#">Rehire Employee</a></li>
+                    <li><a href="#">Assign RFID to Employee</a></li>
+                    <li><a href="#">Subjects to Handle</a></li>
+                </ul>
+            </li>
+
+            <!-- 3. Class Program -->
+            <li>
+                <a href="#" class="dropdown-toggle" title="Forms">
+                    <i class="bx bx-file"></i><span>Class Program</span>
+                    <i class="bx bx-chevron-right dropdown-icon"></i>
+                </a>
+                <ul class="submenu">
+                    <li>
+                        <a href="#" class="dropdown-toggle">
+                            <span>Requests</span>
+                            <i class="bx bx-chevron-right dropdown-icon"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="#">File Leave Form</a></li>
+                            <li><a href="#">File Notice Slip</a></li>
+                            <li><a href="#">File Overtime Slip</a></li>
+                            <li><a href="#">Form Tracker</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle">
+                            <span>Approvals</span>
+                            <i class="bx bx-chevron-right dropdown-icon"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="#">Leave Forms Approval</a></li>
+                            <li><a href="#">Notice Slips Approval</a></li>
+                            <li><a href="#">Overtime Forms Approval</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- 4. Faculty -->
+            <li>
+                <a href="#" class="dropdown-toggle" title="Applicants Management">
+                    <i class="bx bx-group"></i><span>Faculty</span>
+                    <i class="bx bx-chevron-right dropdown-icon"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="FacTeach.html">Subjects Faculty Can Teach</a></li>
+                    <li><a href="FacLoad.html">Loading/Scheduling</a></li>
+                    <li><a href="#">Substitution</a></li>
+                    <li><a href="#">View/Print Plotted Load</a></li>
+                    <li><a href="#">Summary Faculty Load</a></li>
+                    <li><a href="#">Reports</a></li>
+                </ul>
+            </li>
+
+            <!-- 5. Advising and Scheduling -->
+            <li>
+                <a href="#" class="dropdown-toggle" title="Time Management">
+                    <i class="bx bx-time-five"></i><span>Advising and Scheduling</span>
+                    <i class="bx bx-chevron-right dropdown-icon"></i>
+                </a>
+                <ul class="submenu">
+                    <li>
+                        <a href="#" class="dropdown-toggle">
+                            <span>Working Hours Management</span>
+                            <i class="bx bx-chevron-right dropdown-icon"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="#">Set Regular Working Hours</a></li>
+                            <li>
+                                <a href="#" class="dropdown-toggle"><span>Set Working Hours</span>
+                                    <i class="bx bx-chevron-right dropdown-icon"></i>
+                                </a>
+                                <ul class="submenu">
+                                    <li><a href="#">Working hours for Specific Employee (weekday)</a></li>
+                                    <li><a href="#">Working schedule for multiple employees</a></li>
+                                    <li><a href="#">Create Working Hour for Employee (specific day)</a></li>
+                                    <li><a href="#">Create Working Hour for Multiple Employees (specific day)</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="dropdown-toggle"><span>Manage Rest Days</span>
+                                    <i class="bx bx-chevron-right dropdown-icon"></i>
+                                </a>
+                                <ul class="submenu">
+                                    <li><a href="#">Set Rest Days (per employee)</a></li>
+                                    <li><a href="#">Set Rest Days (Batch)</a></li>
+                                    <li><a href="#">Search Employee Rest Days</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">View/Delete Working Hours</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="dropdown-toggle"><span>DTR Operations</span>
+                            <i class="bx bx-chevron-right dropdown-icon"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="#">Set DTR Cut-off Dates</a></li>
+                            <li><a href="#">Night Differentials Parameters</a></li>
+                            <li><a href="#">Night Differentials Restrictions</a></li>
+                            <li><a href="#">Late/UT Error Message Settings</a></li>
+                            <li><a href="#">Set DTR Settings</a></li>
+                            <li><a href="#">Max Time Difference</a></li>
+                            <li><a href="#">Set Flexi DTR Settings</a></li>
+                            <li><a href="#">Set Without Grace Period</a></li>
+                            <li><a href="#">Set Without Overtime</a></li>
+                            <li><a href="#">Set Allowed to View OT Cost</a></li>
+                            <li><a href="#">Set Holidays</a></li>
+                            <li><a href="#">Holiday Grouping</a></li>
+                            <li><a href="#">Copy Holidays</a></li>
+                            <li><a href="#">Max Holiday Hours</a></li>
+                            <li><a href="#">Adjust Time-in Time-out</a></li>
+                            <li><a href="#">View/Print DTR</a></li>
+                            <li><a href="#">Holiday Restrictions</a></li>
+                            <li><a href="#">Employees with DTR Entries on Restricted Dates</a></li>
+                            <li><a href="#">Update Undertime Minutes</a></li>
+                            <li><a href="#">Move AWOL to Late/Undertime</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="no-chevron">
+                            <span>DTR Zoning</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- 6. Change of Subject -->
+            <li>
+                <a href="#" class="dropdown-toggle" title="Reports">
+                    <i class="bx bx-bar-chart"></i><span>Change of Subject</span>
+                    <i class="bx bx-chevron-right dropdown-icon"></i>
+                </a>
+                <ul class="submenu">
+                    <li>
+                        <a href="#" class="dropdown-toggle"><span>HR Reports</span>
+                            <i class="bx bx-chevron-right dropdown-icon"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="/Report/activeInactive.html">Active Employee</a></li>
+                            <li><a href="/Report/children.html">Employees' Children</a></li>
+                            <li><a href="/Report/educationHistory.html">Education History</a></li>
+                            <li><a href="/Report/training.html">Training Programs</a></li>
+                            <li><a href="/Report/researchParticipation.html">Research Participation</a></li>
+                            <li><a href="/Report/offensesRecord.html">Offenses Record</a></li>
+                            <li><a href="/Report/skillLanguage.html">Skill & Language</a></li>
+                            <li><a href="/Report/contributionsRegistrations.html">Contributions & Registrations</a></li>
+                            <li><a href="/Report/officialBusiness.html">Official Business</a></li>
+                            <li><a href="/Report/superVisoryListing.html">Supervisory Listing</a></li>
+                            <li><a href="/Report/employeeRelations.html">Employee Relations</a></li>
+                            <li><a href="/Report/groupAffiliations.html">Group Affiliations</a></li>
+                            <li><a href="/Report/demographicReports.html">Demographic Reports</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="dropdown-toggle"><span>Leave & Attendance Reports</span>
+                            <i class="bx bx-chevron-right dropdown-icon"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="/Report/leaveSummary.html">Leave Summary</a></li>
+                            <li><a href="/Report/leaveApplication.html">Leave Applications</a></li>
+                            <li><a href="#">Uncredited Leave Summary</a></li>
+                            <li><a href="#">Employees without Absences Summary</a></li>
+                            <li><a href="#">Employee eDTR Summary</a></li>
+                            <li><a href="#">Individual Monthly Report of Attendance</a></li>
+                            <li><a href="#">Monthly Report of Attendance</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="dropdown-toggle"><span>eDTR Reports</span>
+                            <i class="bx bx-chevron-right dropdown-icon"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="#">Recompute All</a></li>
+                            <li><a href="#">Recompute Late and Undertime</a></li>
+                            <li><a href="#">View/Print DTR</a></li>
+                            <li><a href="#">View/Print Overtime</a></li>
+                            <li><a href="#">List of Holidays</a></li>
+                            <li><a href="#">Non-DTR Employee</a></li>
+                            <li><a href="#">Adjustment eDTR Summary</a></li>
+                            <li><a href="#">Undertime Record Summary</a></li>
+                            <li><a href="#">Late Time-in Record Summary</a></li>
+                            <li><a href="#">Extra Time Record Summary</a></li>
+                            <li><a href="#">Lacking Time Out Record Summary</a></li>
+                            <li><a href="#">Absences Summary</a></li>
+                            <li><a href="#">Deduction Summary</a></li>
+                            <li><a href="#">Perfect Attendance</a></li>
+                            <li><a href="#">Change Schedule</a></li>
+                            <li>
+                                <a href="#" class="dropdown-toggle"><span>Employee Login Tracking</span>
+                                    <i class="bx bx-chevron-right dropdown-icon"></i>
+                                </a>
+                                <ul class="submenu">
+                                    <li><a href="#">Employee login tracking (per Day)</a></li>
+                                    <li><a href="#">Employee login tracking (Summary)</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- 7. Reports -->
+            <li>
+                <a href="#" class="dropdown-toggle" title="Holidays Management">
+                    <i class="bx bx-calendar"></i><span>Reports</span>
+                    <i class="bx bx-chevron-right dropdown-icon"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="#">Set Holidays</a></li>
+                    <li><a href="#">Holiday Grouping</a></li>
+                    <li><a href="#">Copy Holidays</a></li>
+                    <li><a href="#">Max Holiday Hours</a></li>
+                    <li><a href="#">Holiday Restrictions</a></li>
+                    <li><a href="#">Employees with DTR Entries on Restricted Dates</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="sticky-footer-container" id="stickyFooterContainer">
+            <!-- Profile Section -->
+            <div class="profile-section">
+                <img src="../images/profile.jpg" alt="Profile Picture" class="profile-img">
+                <div class="profile-info">
+                    <strong>Jane Doe</strong>
+                    <small>HR Staff</small>
+                </div>
+                <!-- Notification Button -->
+                <i class="bx bx-bell notification-icon"></i>
+            </div>
+
+            <!-- Logout Section -->
+            <div class="logout-section">
+                <i class="bx bx-log-out"></i> <span>Log Out</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation Menu (hidden by default) -->
+    <div class="mobile-nav" id="mobileNav">
+        <!-- Close Button -->
+        <div class="close-btn" id="closeNavBtn">&times;</div>
+        <ul class="nav_list">
+            <!-- 1. Dashboard -->
+            <li>
+                <a href="#" class="no-chevron" title="Dashboard"><i class="bx bx-home"></i><span>Dashboard</span></a>
+            </li>
+
+            <!-- 2. Employee Management -->
+            <li>
+                <a href="#" class="dropdown-toggle" title="Employee Management">
+                    <i class="bx bx-user"></i><span>Employee Management</span>
+                    <i class="bx bx-chevron-right dropdown-icon"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="/201File/index.html">201 File</a></li>
+                    <li><a href="#">Exit Interview</a></li>
+                    <li><a href="#">Rehire Employee</a></li>
+                    <li><a href="#">Assign RFID to Employee</a></li>
+                    <li><a href="#">Subjects to Handle</a></li>
+                </ul>
+            </li>
+
+            <!-- 3. Forms -->
+            <li>
+                <a href="#" class="dropdown-toggle" title="Forms">
+                    <i class="bx bx-file"></i><span>Forms</span>
+                    <i class="bx bx-chevron-right dropdown-icon"></i>
+                </a>
+                <ul class="submenu">
+                    <li>
+                        <a href="#" class="dropdown-toggle">
+                            <span>Requests</span>
+                            <i class="bx bx-chevron-right dropdown-icon"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="#">File Leave Form</a></li>
+                            <li><a href="#">File Notice Slip</a></li>
+                            <li><a href="#">File Overtime Slip</a></li>
+                            <li><a href="#">Form Tracker</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle">
+                            <span>Approvals</span>
+                            <i class="bx bx-chevron-right dropdown-icon"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="#">Leave Forms Approval</a></li>
+                            <li><a href="#">Notice Slips Approval</a></li>
+                            <li><a href="#">Overtime Forms Approval</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- 4. Applicants Management -->
+            <li>
+                <a href="#" class="dropdown-toggle" title="Applicants Management">
+                    <i class="bx bx-group"></i><span>Applicants Management</span>
+                    <i class="bx bx-chevron-right dropdown-icon"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="/Applicant Summary/index.html">Applicant Summary</a></li>
+                    <li><a href="#">Preliminary Interview</a></li>
+                    <li><a href="#">Final Interview</a></li>
+                </ul>
+            </li>
+
+            
+
+            <!-- 5. Attendance & Time Management (eDTR) -->
+            <li>
+                <a href="#" class="dropdown-toggle" title="Time Management">
+                    <i class="bx bx-time-five"></i><span>Time Management</span>
+                    <i class="bx bx-chevron-right dropdown-icon"></i>
+                </a>
+                <ul class="submenu">
+                    <li>
+                        <a href="#" class="dropdown-toggle">
+                            <span>Working Hours Management</span>
+                            <i class="bx bx-chevron-right dropdown-icon"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="#">Set Regular Working Hours</a></li>
+                            <li>
+                                <a href="#" class="dropdown-toggle"><span>Set Working Hours</span>
+                                    <i class="bx bx-chevron-right dropdown-icon"></i>
+                                </a>
+                                <ul class="submenu">
+                                    <li><a href="#">Working hours for Specific Employee (weekday)</a></li>
+                                    <li><a href="#">Working schedule for multiple employees</a></li>
+                                    <li><a href="#">Create Working Hour for Employee (specific day)</a></li>
+                                    <li><a href="#">Create Working Hour for Multiple Employees (specific day)</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="dropdown-toggle"><span>Manage Rest Days</span>
+                                    <i class="bx bx-chevron-right dropdown-icon"></i>
+                                </a>
+                                <ul class="submenu">
+                                    <li><a href="#">Set Rest Days (per employee)</a></li>
+                                    <li><a href="#">Set Rest Days (Batch)</a></li>
+                                    <li><a href="#">Search Employee Rest Days</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">View/Delete Working Hours</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="dropdown-toggle"><span>DTR Operations</span>
+                            <i class="bx bx-chevron-right dropdown-icon"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="#">Set DTR Cut-off Dates</a></li>
+                            <li><a href="#">Night Differentials Parameters</a></li>
+                            <li><a href="#">Night Differentials Restrictions</a></li>
+                            <li><a href="#">Late/UT Error Message Settings</a></li>
+                            <li><a href="#">Set DTR Settings</a></li>
+                            <li><a href="#">Max Time Difference</a></li>
+                            <li><a href="#">Set Flexi DTR Settings</a></li>
+                            <li><a href="#">Set Without Grace Period</a></li>
+                            <li><a href="#">Set Without Overtime</a></li>
+                            <li><a href="#">Set Allowed to View OT Cost</a></li>
+                            <li><a href="#">Set Holidays</a></li>
+                            <li><a href="#">Holiday Grouping</a></li>
+                            <li><a href="#">Copy Holidays</a></li>
+                            <li><a href="#">Max Holiday Hours</a></li>
+                            <li><a href="#">Adjust Time-in Time-out</a></li>
+                            <li><a href="#">View/Print DTR</a></li>
+                            <li><a href="#">Holiday Restrictions</a></li>
+                            <li><a href="#">Employees with DTR Entries on Restricted Dates</a></li>
+                            <li><a href="#">Update Undertime Minutes</a></li>
+                            <li><a href="#">Move AWOL to Late/Undertime</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="no-chevron">
+                            <span>DTR Zoning</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- 6. Reports -->
+            <li>
+                <a href="#" class="dropdown-toggle" title="Reports">
+                    <i class="bx bx-bar-chart"></i><span>Reports</span>
+                    <i class="bx bx-chevron-right dropdown-icon"></i>
+                </a>
+                <ul class="submenu">
+                    <li>
+                        <a href="#" class="dropdown-toggle"><span>HR Reports</span>
+                            <i class="bx bx-chevron-right dropdown-icon"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="#">Active Employee</a></li>
+                            <li><a href="#">Employees' Children</a></li>
+                            <li><a href="#">Education History</a></li>
+                            <li><a href="#">Skills/Languages</a></li>
+                            <li><a href="#">Contributions & Registrations</a></li>
+                            <li><a href="#">Official Business</a></li>
+                            <li><a href="#">Supervisory Listing</a></li>
+                            <li><a href="#">Employee Relations</a></li>
+                            <li><a href="#">Group Affiliations</a></li>
+                            <li><a href="#">Demographic Reports</a></li>
+                            <li><a href="#">Research Participation</a></li>
+                            <li><a href="#">Offenses Record</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="dropdown-toggle"><span>Leave & Attendance Reports</span>
+                            <i class="bx bx-chevron-right dropdown-icon"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="#">Leave Summary</a></li>
+                            <li><a href="#">Leave Applications</a></li>
+                            <li><a href="#">Uncredited Leave Summary</a></li>
+                            <li><a href="#">Employees without Absences Summary</a></li>
+                            <li><a href="#">Employee eDTR Summary</a></li>
+                            <li><a href="#">Individual Monthly Report of Attendance</a></li>
+                            <li><a href="#">Monthly Report of Attendance</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="dropdown-toggle"><span>eDTR Reports</span>
+                            <i class="bx bx-chevron-right dropdown-icon"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="#">Recompute All</a></li>
+                            <li><a href="#">Recompute Late and Undertime</a></li>
+                            <li><a href="#">View/Print DTR</a></li>
+                            <li><a href="#">View/Print Overtime</a></li>
+                            <li><a href="#">List of Holidays</a></li>
+                            <li><a href="#">Non-DTR Employee</a></li>
+                            <li><a href="#">Adjustment eDTR Summary</a></li>
+                            <li><a href="#">Undertime Record Summary</a></li>
+                            <li><a href="#">Late Time-in Record Summary</a></li>
+                            <li><a href="#">Extra Time Record Summary</a></li>
+                            <li><a href="#">Lacking Time Out Record Summary</a></li>
+                            <li><a href="#">Absences Summary</a></li>
+                            <li><a href="#">Deduction Summary</a></li>
+                            <li><a href="#">Perfect Attendance</a></li>
+                            <li><a href="#">Change Schedule</a></li>
+                            <li>
+                                <a href="#" class="dropdown-toggle"><span>Employee Login Tracking</span>
+                                    <i class="bx bx-chevron-right dropdown-icon"></i>
+                                </a>
+                                <ul class="submenu">
+                                    <li><a href="#">Employee login tracking (per Day)</a></li>
+                                    <li><a href="#">Employee login tracking (Summary)</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- 7. Holidays Management -->
+            <li>
+                <a href="#" class="dropdown-toggle" title="Holidays Management">
+                    <i class="bx bx-calendar"></i><span>Holidays Management</span>
+                    <i class="bx bx-chevron-right dropdown-icon"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="#">Set Holidays</a></li>
+                    <li><a href="#">Holiday Grouping</a></li>
+                    <li><a href="#">Copy Holidays</a></li>
+                    <li><a href="#">Max Holiday Hours</a></li>
+                    <li><a href="#">Holiday Restrictions</a></li>
+                    <li><a href="#">Employees with DTR Entries on Restricted Dates</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="sticky-footer-container-mobile">
+            <!-- Profile Section -->
+            <div class="profile-section">
+                <img src="../images/profile.jpg" alt="Profile Picture" class="profile-img">
+                <div class="profile-info">
+                    <strong>Jane Doe</strong>
+                    <small>HR Staff</small>
+                </div>
+                <!-- Notification Button -->
+                <i class="bx bx-bell notification-icon"></i>
+            </div>
+
+            <!-- Logout Section -->
+            <div class="logout-section">
+                <i class="bx bx-log-out"></i> <span>Log Out</span>
+            </div>
+        </div>
+
+        <!-- Dark Overlay (appears when mobile nav is open) -->
+        <div class="overlay" id="overlay"></div>
+
+        <script src="app.js"></script>
+    </div>
+</body>
+
+</html>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+
+    body {
+        margin: 0;
+        background-color: var(--background-color);
+    }
+
+    :root {
+        --white-color: #fff;
+        --blue-color: #174069;
+        --hover-color: #20568B;
+        --background-color: white;
+        --grey-color: #707070;
+        --grey-color-light: #aaa;
+        --font-size-main-menu: 14px;
+        /* Primary Menu */
+        --font-size-submenu: 14px;
+        /* Secondary Menu */
+        --font-size-tertiary-menu: 14px;
+        /* Tertiary Menu */
+    }
+
+    /* Navbar */
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        left: 0;
+        background-image: url('../images/NEU\ cover.png');
+        background-position: -80px -80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 30px;
+        z-index: 1000;
+        box-shadow: 0 0 2px #ccc;
+    }
+
+    /* Hamburger Icon Styling */
+    .hamburger-icon {
+        padding: 4px;
+        /* 4px padding */
+        display: none;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 24px;
+        color: #fff;
+        /* Make sure it's visible on the navbar */
+    }
+
+    .hamburger-icon:hover {
+        background-color: #f0f0f0;
+        border-radius: 4px;
+        color: var(--blue-color);
+    }
+
+    .logo_item {
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+        font-size: 22px;
+        font-weight: 600;
+        color: #fff;
+    }
+
+    .navbar img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .navbar_content {
+        display: flex;
+        align-items: center;
+        column-gap: 25px;
+    }
+
+    .navbar_content i {
+        cursor: pointer;
+        font-size: 20px;
+        color: #fff;
+    }
+
+    /* Sidebar Header Container */
+    .sidebar-header-container {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 270px;
+        background-color: var(--white-color);
+        box-shadow: 0 0 1px var(--grey-color-light);
+        z-index: 1001;
+        transition: all 0.3s ease;
+    }
+
+    .sidebar-header-container.collapsed {
+        width: 80px;
+    }
+
+    /* Sidebar header (collapse button only) */
+    .sidebar-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        height: 60px;
+        position: relative;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .sidebar-collapse-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+    }
+
+    /* Collapse toggle when sidebar is collapsed */
+    .sidebar-header-container.collapsed .sidebar-collapse-toggle {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    /* Sidebar */
+    .sidebar {
+        position: fixed;
+        top: 140px;
+        left: 0;
+        width: 270px;
+        height: calc(100vh - 200px);
+        /* Adjust depending on the height of the sticky footer */
+        background-color: var(--white-color);
+        box-shadow: 0 0 1px var(--grey-color-light);
+        padding: 15px;
+        padding-bottom: 100px;
+        /* Add space for the sticky footer */
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        transition: all 0.3s ease;
+        z-index: 1001;
+    }
+
+    .sidebar.collapsed {
+        width: 80px;
+    }
+
+    .sticky-footer-container.collapsed {
+        width: 80px;
+    }
+
+    .sidebar::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Sidebar Links */
+    .nav_list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Main Menu Links */
+    .nav_list li {
+        margin-bottom: 15px;
+    }
+
+    /* Main Menu Items (Primary) */
+    .nav_list a {
+        color: black;
+        text-decoration: none;
+        font-size: var(--font-size-main-menu);
+        font-weight: 500;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 10px 15px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        position: relative;
+    }
+
+    .nav_list a span {
+        margin-left: 10px;
+        flex: 1;
+        transition: opacity 0.3s ease;
+    }
+
+    .nav_list a i:first-child {
+        font-size: 22px;
+        margin-right: 10px;
+    }
+
+    .nav_list a:hover {
+        background-color: #174069;
+        color: white;
+    }
+
+    /* Submenus */
+    .submenu {
+        list-style: none;
+        padding-left: 40px;
+        display: none;
+    }
+
+    /* Submenu Items (Secondary) */
+    .submenu li a {
+        font-size: var(--font-size-submenu);
+        padding: 8px 15px;
+        color: black;
+    }
+
+    .submenu li a:hover {
+        background-color: #174069;
+        color: white;
+    }
+
+    .profile-section {
+        display: flex;
+        align-items: center;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .profile-img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+
+    .profile-info strong {
+        display: block;
+        font-size: 14px;
+        color: #174069;
+    }
+
+    .profile-info small {
+        font-size: 12px;
+        color: #aaa;
+    }
+
+    .logout-section {
+        display: flex;
+        align-items: center;
+        padding-top: 20px;
+    }
+
+    .logout-section i {
+        font-size: 24px;
+        margin-right: 10px;
+        color: #20568B;
+    }
+
+    .logout-section span {
+        font-size: 16px;
+        color: #174069;
+    }
+
+    .sidebar-header img {
+        width: 80px;
+        margin-bottom: 10px;
+    }
+
+    .sidebar-header h2 {
+        font-size: 16px;
+        color: #174069;
+    }
+
+    .sidebar-header h3 {
+        font-size: 14px;
+        color: #20568B;
+    }
+
+    /* Tertiary Menu (Nested Submenu) */
+    .submenu .submenu li a {
+        font-size: var(--font-size-tertiary-menu);
+        padding: 7px 15px;
+        color: black;
+    }
+
+    /* Tertiary Menu Hover */
+    .submenu .submenu li a:hover {
+        background-color: #174069;
+        color: white;
+    }
+
+    .submenu.open {
+        display: block;
+    }
+
+    .rotate-down {
+        transform: rotate(90deg);
+    }
+
+    .nav_list a:hover i:first-child {
+        color: white;
+    }
+
+    /* Sidebar text visibility during collapse */
+    .sidebar.collapsed .nav_list a span {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .sidebar.collapsed .submenu {
+        display: none;
+    }
+
+    /* Tooltip */
+    .sidebar.collapsed .nav_list a::after {
+        content: attr(data-title);
+        position: fixed;
+        left: 90px;
+        background-color: rgba(0, 0, 0, 0.75);
+        color: white;
+        padding: 5px 10px;
+        font-size: 12px;
+        border-radius: 4px;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease, left 0.3s ease;
+        z-index: 1002;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        visibility: hidden;
+    }
+
+    /* Show tooltip on hover with delay */
+    .sidebar.collapsed .nav_list a:hover::after {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+        transition-delay: 0.2s;
+    }
+
+    /* Tooltip arrow */
+    .sidebar.collapsed .nav_list a::before {
+        content: '';
+        position: fixed;
+        left: 80px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent rgba(0, 0, 0, 0.75) transparent transparent;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        visibility: hidden;
+    }
+
+    /* Show tooltip arrow on hover with delay */
+    .sidebar.collapsed .nav_list a:hover::before {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+        transition-delay: 0.2s;
+    }
+
+    /* Mobile Navigation Menu */
+    .mobile-nav {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 280px;
+        height: 100vh;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        z-index: 1003;
+        /* Ensure mobile nav is above the overlay */
+        transition: left 0.3s ease;
+        overflow-y: auto;
+    }
+
+    .mobile-nav.open {
+        left: 0;
+    }
+
+    /* Dark overlay */
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1002;
+        display: none;
+    }
+
+    .overlay.show {
+        display: block;
+
+    }
+
+    /* Close Button */
+    .close-btn {
+        font-size: 24px;
+        cursor: pointer;
+        padding: 10px;
+        display: block;
+        margin-bottom: 10px;
+        color: var(--blue-color);
+    }
+
+    /* Main Content */
+    .main-content {
+        margin-top: 80px;
+        padding: 20px;
+        transition: margin-left 0.3s ease;
+        margin-left: 270px;
+    }
+
+    .main-content.shifted-collapsed {
+        margin-left: 80px;
+    }
+
+    .notification-icon {
+        font-size: 24px;
+        color: #174069;
+        margin-left: auto;
+        cursor: pointer;
+    }
+
+    .notification-icon:hover {
+        color: #20568B;
+    }
+
+    /* Sticky Footer and Profile Section */
+    .sticky-footer-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 270px;
+        /* Sidebar width */
+        background-color: var(--white-color);
+        padding: 15px;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 1001;
+        transition: all 0.3s ease;
+        /* Add smooth transition for collapse */
+    }
+
+    /* Sticky Footer - Adjusted for Collapsed State */
+    .sticky-footer-container.collapsed .profile-info strong,
+    .sticky-footer-container.collapsed .profile-info small,
+    .sticky-footer-container.collapsed .logout-section span {
+        display: none;
+        /* Hide text when sidebar is collapsed */
+    }
+
+    /* Ensure the profile image and bell icon remain visible when collapsed */
+    .sticky-footer-container.collapsed .profile-img,
+    .sticky-footer-container.collapsed .notification-icon,
+    .sticky-footer-container.collapsed .logout-section i {
+        display: block;
+        /* Icons remain visible */
+    }
+
+    /* Align profile and bell icons at the center when sidebar is collapsed */
+    .sticky-footer-container.collapsed .profile-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Center align horizontally */
+        justify-content: center;
+        /* Center align vertically */
+        text-align: center;
+        /* Center-align content */
+        height: 100%;
+        /* Ensure full height is available for centering */
+    }
+
+    .sticky-footer-container.collapsed .profile-img {
+        margin-bottom: 10px;
+        margin-right: 0px;
+        /* Space between profile image and bell icon */
+        display: block;
+        text-align: center;
+    }
+
+    .sticky-footer-container.collapsed .notification-icon {
+        margin-top: 0;
+        margin-left: 0px;
+        font-size: 24px;
+        /* Adjust size of bell icon if needed */
+        display: block;
+        text-align: center;
+    }
+
+    /* Center the logout icon */
+    .sticky-footer-container.collapsed .logout-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 80px;
+        /* Ensuring enough space */
+    }
+
+    /* Optional: Add space to the top of the logout icon */
+    .sticky-footer-container.collapsed .logout-section i {
+        margin-top: 20px;
+        display: block;
+        text-align: center;
+    }
+
+
+    /* Media query for smaller screens */
+    @media (max-width: 932px) {
+
+        .sidebar,
+        .sticky-footer-container,
+        .sidebar-header-container {
+            display: none;
+        }
+
+        /* Show hamburger icon on small screens */
+        .hamburger-icon {
+            display: flex;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1002;
+        }
+
+
+        /* Main content takes up full width */
+        .main-content {
+            margin-left: 0;
+        }
+
+        /* Dark overlay for mobile nav */
+        .overlay.show {
+            display: block;
+        }
+    }
+</style>
