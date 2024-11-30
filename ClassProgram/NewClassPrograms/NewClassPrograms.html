@@ -111,7 +111,7 @@
                             </div>
                             <div class="label label-input" style="flex-grow: 0.1; display: flex; flex-direction: column;">
                                 <label style="font-size: 8px;">Click to show Subjects</label>
-                                <a href="your-details-link.html" class="showsub text-center bg-blue-500 text-white px-2 py-1 rounded" style="margin-top: 8px; font-size: 14px;">
+                                <a href="#" onclick="openPopup2()" class="showsub text-center bg-blue-500 text-white px-2 py-1 rounded" style="margin-top: 8px; font-size: 14px;">
                                     Show Subjects
                                 </a>                                                                    
                             </div>
@@ -342,6 +342,13 @@
             function openPopup1() {
             // URL of the page you want to open
             const url = 'ClassProgramsWithDetails.html'; // Replace with your popup page URL
+            const options = 'width=1200,height=800,resizable=yes,scrollbars=yes'; // Customize the dimensions
+            window.open(url, 'PopupWindow', options);
+            }
+
+            function openPopup2() {
+            // URL of the page you want to open
+            const url = 'SubjectFiltered.html'; // Replace with your popup page URL
             const options = 'width=1200,height=800,resizable=yes,scrollbars=yes'; // Customize the dimensions
             window.open(url, 'PopupWindow', options);
             }
