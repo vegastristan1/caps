@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Load Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -61,58 +62,8 @@
                         <th class="px-4 py-2 border-b-4 border-orange-500 text-left" style="width: 100px;">Edit/Delete</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="bg-white">
-                        <td class="px-4 py-2 border border-gray-300">1</td>
-                        <td class="px-4 py-2 border border-gray-300">1st</td>
-                        <td class="px-4 py-2 border border-gray-300">103</td>
-                        <td class="px-4 py-2 border border-gray-300"></td>
-                        <td class="px-4 py-2 border border-gray-300"></td>
-                        <td class="px-4 py-2 border border-gray-300">Accreditation Room</td>
-                        <td class="px-4 py-2 border border-gray-300"></td>
-                        <td class="px-4 py-2 border border-gray-300">
-                        <a href="#" class="bi bi-x" style="color: red;"></a>
-                    </td>
-                        <td class="px-4 py-2 border border-gray-300"></td>
-                        <td class="px-4 py-2 border border-gray-300">
-                            <a href="#" class="bi bi-pencil icon-link" title="Edit"></a>
-                            <a href="#" class="bi bi-trash icon-link" title="Delete"></a>
-                        </td>
-                    </tr>
-                    <tr class="bg-white">
-                        <td class="px-4 py-2 border border-gray-300">2</td>
-                        <td class="px-4 py-2 border border-gray-300">Ground</td>
-                        <td class="px-4 py-2 border border-gray-300">248</td>
-                        <td class="px-4 py-2 border border-gray-300"></td>
-                        <td class="px-4 py-2 border border-gray-300">Reading Center (COL)</td>
-                        <td class="px-4 py-2 border border-gray-300">Library</td>
-                        <td class="px-4 py-2 border border-gray-300">Working Condition</td>
-                        <td class="px-4 py-2 border border-gray-300">
-                        <a href="#" class="bi bi-x" style="color: red;"></a>
-                    </td>
-                        <td class="px-4 py-2 border border-gray-300"></td>
-                        <td class="px-4 py-2 border border-gray-300">
-                            <a href="#" class="bi bi-pencil icon-link" title="Edit"></a>
-                            <a href="#" class="bi bi-trash icon-link" title="Delete"></a>
-                        </td>
-                    </tr>
-                    <tr class="bg-white">
-                        <td class="px-4 py-2 border border-gray-300">MAIN</td>
-                        <td class="px-4 py-2 border border-gray-300">3rd</td>
-                        <td  class="px-4 py-2 border border-gray-300">M310</td>
-                        <td class="px-4 py-2 border border-gray-300">7/22/2022</td>
-                        <td class="px-4 py-2 border border-gray-300">College of Engineering and Architecture -BSCE</td>
-                        <td class="px-4 py-2 border border-gray-300">Lecture Room</td>
-                        <td class="px-4 py-2 border border-gray-300">In Working Condition</td>
-                        <td class="px-4 py-2 border border-gray-300">
-                        <a href="#" class="bi bi-check" style="color: green;"></a>
-                    </td>
-                        <td class="px-4 py-2 border border-gray-300">40</td>
-                        <td class="px-4 py-2 border border-gray-300">
-                            <a href="#" class="bi bi-pencil icon-link" title="Edit"></a>
-                            <a href="#" class="bi bi-trash icon-link" title="Delete"></a>
-                        </td>
-                    </tr>
+                <tbody id="room-list-table">
+                
                 </tbody>
             </table>
         </div>
@@ -128,7 +79,80 @@
                 var script = document.createElement('script');
                 script.src = '/Components/app.js';
                 document.body.appendChild(script);
+        });
+
+        $(document).ready(function() {
+            //REQUEST ROOM-LIST
+            $.ajax({
+            url: 'http://localhost:3000/assign-room/room-list',
+            method: 'GET',
+            success: function(data) {
+                console.log(data)
+
+                var tableBody = $('#room-list-table');
+
+                tableBody.empty();
+                
+                data.forEach(function(item) {
+                    var formattedDate = item.last_date_inspection ? new Date(item.last_date_inspection) : '';
+                    var subjectAssign = item.subject_assign > 0 ? `<a href="#" class="bi bi-check" style="color: green;"></a>` : `<a href="#" class="bi bi-x" style="color: red;"></a>`
+                    
+                    if (formattedDate) {
+                        var month = formattedDate.getMonth() + 1;
+                        var day = formattedDate.getDate();
+                        var year = formattedDate.getFullYear();
+
+                        month = month < 10 ? '0' + month : month;
+                        day = day < 10 ? '0' + day : day;
+
+                        formattedDate = `${month}-${day}-${year}`;
+                    }
+                    
+                    tableBody.append(`
+                        <tr class="bg-white" id=rm-${item.id}>
+                            <td class="px-4 py-2 border border-gray-300">${item.building_id || ''}</td>
+                            <td class="px-4 py-2 border border-gray-300">${item.room_floor || ''}</td>
+                            <td class="px-4 py-2 border border-gray-300">${item.room_no || ''}</td>
+                            <td class="px-4 py-2 border border-gray-300">${formattedDate || ''}</td>
+                            <td class="px-4 py-2 border border-gray-300">${item.room_descr || ''}</td>
+                            <td class="px-4 py-2 border border-gray-300">${item.room_type || ''}</td>
+                            <td class="px-4 py-2 border border-gray-300">${item.room_status || ''}</td>
+                            <td class="px-4 py-2 border border-gray-300">${subjectAssign}</td>
+                            <td class="px-4 py-2 border border-gray-300">${item.room_capacity || ''}</td>
+                            <td class="px-4 py-2 border border-gray-300">
+                                <a href="#" class="bi bi-pencil icon-link" title="Edit"></a>
+                                <a href="#" class="bi bi-trash icon-link" title="Delete" id="delete-rm" data-id="${item.id}""></a>
+                            </td>
+                        </tr>
+                    `);
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error('Request failed:', error);
+            }
             });
+
+
+            $('#room-list-table').on('click', '#delete-rm', function (e) {
+                e.preventDefault();
+                const roomId = $(this).data('id');
+
+                if (confirm(`Are you sure you want to delete list ${roomId}?`)) {
+                    $.ajax({
+                        url: `http://localhost:3000/assign-room/delete-list?delete_id=${roomId}`, 
+                        type: 'POST',
+                        success: function (response) {
+                            alert('Room deleted successfully!');
+                            $(`#rm-${roomId}`).remove(); // Remove the row from the table
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Failed to delete room:', error);
+                            alert('Failed to delete the room.');
+                        }
+                    });
+                }
+            });
+        });
     </script>
 </body>
 
