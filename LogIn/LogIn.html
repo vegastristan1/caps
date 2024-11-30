@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Load Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <!-- Hamburger Button Icon on the left side -->
+        <div class="hamburger-icon p-4 cursor-pointer" id="hamburgerIcon">
+            <i class="bx bx-menu"></i> <!-- Hamburger icon -->
+        </div>
+        <div class="logo_item">
+            <img src="/images/Logo.png" alt=""> ENROLLMENT SYSTEM - SCHOOL SYSTEM
+        </div>
+
+
+    </nav>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="section-header text-sm md:text-xl">
+        <h1>LOGIN</h1>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex items-center justify-center min-h-screen">
+        <div class="form-container bg-white shadow-lg rounded-lg p-8">
+            <form action="#" method="POST" class="space-y-6">
+                <div class="text-center">
+                    <h2 class="text-2xl font-bold text-gray-800">Welcome Back</h2>
+                    <p class="text-gray-600">Please enter your login details</p>
+                </div>
+                <!-- Username -->
+                <div class="form-group">
+                    <label for="username" class="block text-gray-700 font-semibold">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" class="w-full border border-gray-300 rounded-md p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                </div>
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="password" class="block text-gray-700 font-semibold">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" class="w-full border border-gray-300 rounded-md p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                </div>
+                <!-- Submit Button -->
+                <div class="form-actions text-center">
+                    <a href="/Dashboard/Welcome.html"  type="submit" style=" background-color: #174069;" class="w-full text-white font-semibold py-3 rounded-md transition duration-200">Login</a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Styles -->
+    <style scoped>
+        /* Header styling */
+        .section-header {
+            background-color: #174069;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .section-header h1 {
+            color: white;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Form container styling */
+        .form-container {
+            width: 90%;
+            max-width: 400px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+            /* Navbar */
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        left: 0;
+        background-image: url('/images/cover.png');
+        background-position: -80px -80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 30px;
+        z-index: 1000;
+        box-shadow: 0 0 2px #ccc;
+    }
+
+    /* Hamburger Icon Styling */
+    .hamburger-icon {
+        padding: 4px;
+        /* 4px padding */
+        display: none;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 24px;
+        color: #fff;
+        /* Make sure it's visible on the navbar */
+    }
+
+    .logo_item {
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+        font-size: 22px;
+        font-weight: 600;
+        color: #fff;
+    }
+
+    .navbar img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    </style>
+</body>
+</html>
