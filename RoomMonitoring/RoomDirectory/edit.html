@@ -25,22 +25,16 @@
             </ul>
         </nav>
         <section class="section-header text-sm md:text-xl">
-            <h1>LIST OF EXISTING ROOMS</h1>
+            <h1>EDIT OF EXISTING ROOMS</h1>
         </section>
 
         <div class="flex items-center justify-between">
             <!-- Left section: Title, chevron, and pen icon -->
-            <div class="flex items-center">
-                <h1>
-                    <button class="bi bi-arrow-clockwise"></button>
-                    To Filter room display enter room number starts with
-                    <input type="text" class="border rounded px-2 py-1 text-sm" placeholder="Room number" />
-                    and click  REFRESH to reload the page.
-                </h1>                        
+            <div class="flex items-center">                
             </div>
             <div class="flex items-center justify-end ">
-                <a href="create.html" style="background-color: #174069;"
-                    class="bg-blue-900 text-white p-1 md:p-2 text-xs md:text-md flex items-center">+ Add Record
+                <a href="main.html" style="background-color: #174069;"
+                    class="bg-blue-900 text-white p-1 md:p-2 text-xs md:text-md flex items-center">+ Save Record
                 </a>
             </div>
         </div>
@@ -58,60 +52,37 @@
                         <th class="px-4 py-2 border-b-4 border-orange-500 text-left" style="width: 200px;">Status/Remarks</th>
                         <th class="px-4 py-2 border-b-4 border-orange-500 text-left" style="width: 200px;">For Subject Assignment</th>
                         <th class="px-4 py-2 border-b-4 border-orange-500 text-left" style="width: 200px;">Total of Capacity (No. of Students)</th>
-                        <th class="px-4 py-2 border-b-4 border-orange-500 text-left" style="width: 100px;">Edit/Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="bg-white">
-                        <td class="px-4 py-2 border border-gray-300">1</td>
-                        <td class="px-4 py-2 border border-gray-300">1st</td>
-                        <td class="px-4 py-2 border border-gray-300">103</td>
-                        <td class="px-4 py-2 border border-gray-300"></td>
-                        <td class="px-4 py-2 border border-gray-300"></td>
-                        <td class="px-4 py-2 border border-gray-300">Accreditation Room</td>
-                        <td class="px-4 py-2 border border-gray-300"></td>
-                        <td class="px-4 py-2 border border-gray-300">
-                        <a href="#" class="bi bi-x" style="color: red;"></a>
-                    </td>
-                        <td class="px-4 py-2 border border-gray-300"></td>
-                        <td class="px-4 py-2 border border-gray-300">
-                            <a href="edit.html" class="bi bi-pencil icon-link" title="Edit"></a>
-                            <a href="#" class="bi bi-trash icon-link" title="Delete"></a>
-                        </td>
-                    </tr>
-                    <tr class="bg-white">
-                        <td class="px-4 py-2 border border-gray-300">2</td>
-                        <td class="px-4 py-2 border border-gray-300">Ground</td>
-                        <td class="px-4 py-2 border border-gray-300">248</td>
-                        <td class="px-4 py-2 border border-gray-300"></td>
-                        <td class="px-4 py-2 border border-gray-300">Reading Center (COL)</td>
-                        <td class="px-4 py-2 border border-gray-300">Library</td>
-                        <td class="px-4 py-2 border border-gray-300">Working Condition</td>
-                        <td class="px-4 py-2 border border-gray-300">
-                        <a href="#" class="bi bi-x" style="color: red;"></a>
-                    </td>
-                        <td class="px-4 py-2 border border-gray-300"></td>
-                        <td class="px-4 py-2 border border-gray-300">
-                            <a href="edit.html" class="bi bi-pencil icon-link" title="Edit"></a>
-                            <a href="#" class="bi bi-trash icon-link" title="Delete"></a>
-                        </td>
-                    </tr>
-                    <tr class="bg-white">
-                        <td class="px-4 py-2 border border-gray-300">MAIN</td>
-                        <td class="px-4 py-2 border border-gray-300">3rd</td>
-                        <td  class="px-4 py-2 border border-gray-300">M310</td>
-                        <td class="px-4 py-2 border border-gray-300">7/22/2022</td>
-                        <td class="px-4 py-2 border border-gray-300">College of Engineering and Architecture -BSCE</td>
-                        <td class="px-4 py-2 border border-gray-300">Lecture Room</td>
-                        <td class="px-4 py-2 border border-gray-300">In Working Condition</td>
-                        <td class="px-4 py-2 border border-gray-300">
-                        <a href="#" class="bi bi-check" style="color: green;"></a>
-                    </td>
-                        <td class="px-4 py-2 border border-gray-300">40</td>
-                        <td class="px-4 py-2 border border-gray-300">
-                            <a href="edit.html" class="bi bi-pencil icon-link" title="Edit"></a>
-                            <a href="#" class="bi bi-trash icon-link" title="Delete"></a>
-                        </td>
+                            <td class="px-4 py-2 border border-gray-300">
+                              <input type="text" class="border rounded p-1 w-full" value="1" />
+                            </td>
+                            <td class="px-4 py-2 border border-gray-300">
+                              <input type="text" class="border rounded p-1 w-full" value="1st" />
+                            </td>
+                            <td class="px-4 py-2 border border-gray-300">
+                              <input type="text" class="border rounded p-1 w-full" value="103" />
+                            </td>
+                            <td class="px-4 py-2 border border-gray-300">
+                              <input type="date" class="border rounded p-1 w-full" value="2022-02-22" />
+                            </td>
+                            <td class="px-4 py-2 border border-gray-300">
+                              <input type="text" class="border rounded p-1 w-full" value="College of Engineering and Architecture -BSCE" />
+                            </td>
+                            <td class="px-4 py-2 border border-gray-300">
+                              <input type="text" class="border rounded p-1 w-full" value="Lecture Room" />
+                            </td>
+                            <td class="px-4 py-2 border border-gray-300">
+                              <input type="text" class="border rounded p-1 w-full" value="In Working Condition" />
+                            </td>
+                            <td class="px-4 py-2 border border-gray-300">
+                              <a href="#" class="bi bi-x" style="color: red;" onclick="toggleIcon(this)"></a>
+                            </td>
+                            <td class="px-4 py-2 border border-gray-300">
+                              <input type="text" class="border rounded p-1 w-full" value="35" />
+                            </td>
                     </tr>
                 </tbody>
             </table>
@@ -129,6 +100,18 @@
                 script.src = '/Components/app.js';
                 document.body.appendChild(script);
             });
+
+            function toggleIcon(element) {
+            if (element.classList.contains('bi-x')) {
+            element.classList.remove('bi-x');
+            element.classList.add('bi-check');
+            element.style.color = 'green';
+            } else {
+            element.classList.remove('bi-check');
+            element.classList.add('bi-x');
+            element.style.color = 'red';
+            }
+            }
     </script>
 </body>
 
