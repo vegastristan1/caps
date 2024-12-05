@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Load Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -28,66 +29,40 @@
             <h1>EDIT OF EXISTING ROOMS</h1>
         </section>
 
-        <div class="flex items-center justify-between">
-            <!-- Left section: Title, chevron, and pen icon -->
-            <div class="flex items-center">                
+            <div class="flex items-center justify-between">
+                <!-- Left section: Title, chevron, and pen icon -->
+                <div class="flex items-center">                
+                </div>
+                <div class="flex items-center justify-end ">
+                    <button 
+                        id="rm-button-edit-save"
+                        style="background-color: #174069;" 
+                        class="bg-blue-900 text-white p-1 md:p-2 text-xs md:text-md flex items-center">+ Save Record
+                    </button>
+                </div>
             </div>
-            <div class="flex items-center justify-end ">
-                <a href="main.html" style="background-color: #174069;"
-                    class="bg-blue-900 text-white p-1 md:p-2 text-xs md:text-md flex items-center">+ Save Record
-                </a>
-            </div>
-        </div>
 
-        <div class="overflow-x-auto mt-6">
-            <table class="min-w-full table-auto border-collapse">
-                <thead style="background-color: #174069;" class="text-white">
-                    <tr>
-                        <th class="px-4 py-2 border-b-4 border-orange-500 text-left" style="width: 200px;">Building</th>
-                        <th class="px-4 py-2 border-b-4 border-orange-500 text-left" style="width: 200px;">Floor</th>
-                        <th class="px-4 py-2 border-b-4 border-orange-500 text-left" style="width: 200px;">Room #</th>
-                        <th class="px-4 py-2 border-b-4 border-orange-500 text-left" style="width: 200px;">Late Inspection Date</th>
-                        <th class="px-4 py-2 border-b-4 border-orange-500 text-left" style="width: 200px;">Description</th>
-                        <th class="px-4 py-2 border-b-4 border-orange-500 text-left" style="width: 200px;">Type of Room</th>
-                        <th class="px-4 py-2 border-b-4 border-orange-500 text-left" style="width: 200px;">Status/Remarks</th>
-                        <th class="px-4 py-2 border-b-4 border-orange-500 text-left" style="width: 200px;">For Subject Assignment</th>
-                        <th class="px-4 py-2 border-b-4 border-orange-500 text-left" style="width: 200px;">Total of Capacity (No. of Students)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="bg-white">
-                            <td class="px-4 py-2 border border-gray-300">
-                              <input type="text" class="border rounded p-1 w-full" value="1" />
-                            </td>
-                            <td class="px-4 py-2 border border-gray-300">
-                              <input type="text" class="border rounded p-1 w-full" value="1st" />
-                            </td>
-                            <td class="px-4 py-2 border border-gray-300">
-                              <input type="text" class="border rounded p-1 w-full" value="103" />
-                            </td>
-                            <td class="px-4 py-2 border border-gray-300">
-                              <input type="date" class="border rounded p-1 w-full" value="2022-02-22" />
-                            </td>
-                            <td class="px-4 py-2 border border-gray-300">
-                              <input type="text" class="border rounded p-1 w-full" value="College of Engineering and Architecture -BSCE" />
-                            </td>
-                            <td class="px-4 py-2 border border-gray-300">
-                              <input type="text" class="border rounded p-1 w-full" value="Lecture Room" />
-                            </td>
-                            <td class="px-4 py-2 border border-gray-300">
-                              <input type="text" class="border rounded p-1 w-full" value="In Working Condition" />
-                            </td>
-                            <td class="px-4 py-2 border border-gray-300">
-                              <a href="#" class="bi bi-x" style="color: red;" onclick="toggleIcon(this)"></a>
-                            </td>
-                            <td class="px-4 py-2 border border-gray-300">
-                              <input type="text" class="border rounded p-1 w-full" value="35" />
-                            </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="border-b-4 border-black my-4"></div>
+            <div class="overflow-x-auto mt-6">
+                <table class="min-w-full table-auto border-collapse">
+                    <thead style="background-color: #174069;" class="text-white">
+                        <tr>
+                            <th class="px-4 py-2 border-b-4 border-orange-500 text-left" style="width: 200px;">Building</th>
+                            <th class="px-4 py-2 border-b-4 border-orange-500 text-left" style="width: 200px;">Floor</th>
+                            <th class="px-4 py-2 border-b-4 border-orange-500 text-left" style="width: 200px;">Room #</th>
+                            <th class="px-4 py-2 border-b-4 border-orange-500 text-left" style="width: 200px;">Late Inspection Date</th>
+                            <th class="px-4 py-2 border-b-4 border-orange-500 text-left" style="width: 200px;">Description</th>
+                            <th class="px-4 py-2 border-b-4 border-orange-500 text-left" style="width: 200px;">Type of Room</th>
+                            <th class="px-4 py-2 border-b-4 border-orange-500 text-left" style="width: 200px;">Status/Remarks</th>
+                            <th class="px-4 py-2 border-b-4 border-orange-500 text-left" style="width: 200px;">For Subject Assignment</th>
+                            <th class="px-4 py-2 border-b-4 border-orange-500 text-left" style="width: 200px;">Total of Capacity (No. of Students)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="room-list-edit">
+                     
+                    </tbody> 
+                </table>
+            </div>
+            <div class="border-b-4 border-black my-4"></div>
 
 
     <script>
@@ -99,19 +74,128 @@
                 var script = document.createElement('script');
                 script.src = '/Components/app.js';
                 document.body.appendChild(script);
-            });
+        });
 
-            function toggleIcon(element) {
-            if (element.classList.contains('bi-x')) {
-            element.classList.remove('bi-x');
-            element.classList.add('bi-check');
-            element.style.color = 'green';
-            } else {
-            element.classList.remove('bi-check');
-            element.classList.add('bi-x');
-            element.style.color = 'red';
+        function toggleIcon(element) {
+            if (element.classList.contains('set-rm-edit')) {
+                let currentValue = element.getAttribute('value');
+                const newValue = element.checked ? 1 : 0;
+                element.setAttribute('value', newValue);
             }
+        }
+
+        $('#rm-button-edit-save').click(() => {
+            event.preventDefault();
+
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const editId = urlParams.get('edit_id');
+
+            const editRowId = document.getElementById('row-edit-room-tr');
+            const values = $(editRowId).find("input").map(function() {
+                return $(this).val(); 
+            }).get(); 
+
+            const keys = [
+                "building_id",
+                "room_floor",
+                "room_no",
+                "formatted_date",
+                "room_descr",
+                "room_type",
+                "room_status",
+                "subject_assign",
+                "room_capacity"
+            ];
+
+            const formData = keys.reduce((obj, key, index) => {
+                obj[key] = values[index];
+                return obj;
+            }, {});
+
+            // Send AJAX request
+            if (confirm(`Are you sure you want to save this?`)) {
+                $.ajax({
+                    url: `http://localhost:3000/assign-room/edit-list?edit_id=${editId}`, 
+                    type: 'POST',
+                    data: formData,
+                    success: function (response) {
+                        alert('Edited successfully!');
+                        window.location.href = "./main.html"
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Failed to edit list:', error);
+                        alert('Failed to edit list.');
+                    }
+                });
             }
+        });
+
+        $(document).ready(function() {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const editId = urlParams.get('edit_id');
+
+            //REQUEST EDIT ROOM-LIST
+            $.ajax({
+            url: `http://localhost:3000/assign-room/room-list?edit_id=${editId}`,
+            method: 'GET',
+            success: function(data) {
+                
+                var tableBody = $('#room-list-edit');
+                var value = data[0]
+                var formattedDate = value.last_date_inspection ? new Date(value.last_date_inspection) : '';
+
+                if (formattedDate) {
+                    var month = formattedDate.getMonth() + 1;
+                    var day = formattedDate.getDate();
+                    var year = formattedDate.getFullYear();
+
+                    month = month < 10 ? '0' + month : month;
+                    day = day < 10 ? '0' + day : day;
+
+                    formattedDate = `${year}-${month}-${day}`;
+                }
+
+                tableBody.empty();
+
+                tableBody.append(`
+                    <tr class="bg-white" id="row-edit-room-tr">
+                        <td class="px-4 py-2 border border-gray-300">
+                            <input type="text" class="border rounded p-1 w-full" value="${value.building_id}" />
+                        </td>
+                        <td class="px-4 py-2 border border-gray-300">
+                            <input type="text" class="border rounded p-1 w-full" value="${value.room_floor}" />
+                        </td>
+                        <td class="px-4 py-2 border border-gray-300">
+                            <input type="text" class="border rounded p-1 w-full" value="${value.room_no}" />
+                        </td>
+                        <td class="px-4 py-2 border border-gray-300">
+                            <input type="date" class="border rounded p-1 w-full" value="${formattedDate}" />
+                        </td>
+                        <td class="px-4 py-2 border border-gray-300">
+                            <input type="text" class="border rounded p-1 w-full" value="${value.room_descr}" />
+                        </td>
+                        <td class="px-4 py-2 border border-gray-300">
+                            <input type="text" class="border rounded p-1 w-full" value="${value.room_type}" />
+                        </td>
+                        <td class="px-4 py-2 border border-gray-300">
+                            <input type="text" class="border rounded p-1 w-full" value="${value.room_status}" />
+                        </td>
+                        <td class="px-4 py-2 border border-gray-300">
+                            <input type='checkbox' class="set-rm-edit" onclick="toggleIcon(this)" checked="${value.subject_assign == 1 ? true : false}" value="${value.subject_assign}"></input>
+                        </td>
+                        <td class="px-4 py-2 border border-gray-300">
+                            <input type="text" class="border rounded p-1 w-full" value="${value.room_capacity}" />
+                        </td>
+                    </tr>
+                `);
+            },
+            error: function(xhr, status, error) {
+                console.error('Request failed:', error);
+            }
+            });
+        })
     </script>
 </body>
 

@@ -120,8 +120,8 @@
                             <td class="px-4 py-2 border border-gray-300">${subjectAssign}</td>
                             <td class="px-4 py-2 border border-gray-300">${item.room_capacity || ''}</td>
                             <td class="px-4 py-2 border border-gray-300">
-                                <a href="#" class="bi bi-pencil icon-link" title="Edit"></a>
-                                <a href="#" class="bi bi-trash icon-link" title="Delete" id="delete-rm" data-id="${item.id}""></a>
+                                <a href="#" class="bi bi-pencil icon-link" id="edit-rm" title="Edit" data-id="${item.id}"></a>
+                                <a href="#" class="bi bi-trash icon-link" title="Delete" id="delete-rm" data-id="${item.id}"></a>
                             </td>
                         </tr>
                     `);
@@ -137,7 +137,7 @@
                 e.preventDefault();
                 const roomId = $(this).data('id');
 
-                if (confirm(`Are you sure you want to delete list ${roomId}?`)) {
+                if (confirm(`Are you sure you want to delete list ID ${roomId}?`)) {
                     $.ajax({
                         url: `http://localhost:3000/assign-room/delete-list?delete_id=${roomId}`, 
                         type: 'POST',
@@ -151,6 +151,14 @@
                         }
                     });
                 }
+            });
+
+
+            $('#room-list-table').on('click', '#edit-rm', function (e) {
+                e.preventDefault();
+                const roomId = $(this).data('id');
+                
+                window.location.href = `./edit.html?edit_id=${roomId}`
             });
         });
     </script>
