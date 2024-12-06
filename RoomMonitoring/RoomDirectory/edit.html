@@ -92,7 +92,7 @@
             const editId = urlParams.get('edit_id');
 
             const editRowId = document.getElementById('row-edit-room-tr');
-            const values = $(editRowId).find("input").map(function() {
+            const values = $(editRowId).find("input, select").map(function() {
                 return $(this).val(); 
             }).get(); 
 
@@ -162,10 +162,56 @@
                 tableBody.append(`
                     <tr class="bg-white" id="row-edit-room-tr">
                         <td class="px-4 py-2 border border-gray-300">
-                            <input type="text" class="border rounded p-1 w-full" value="${value.building_id}" />
+                            <select id="building" required>
+                                <option value="" disabled selected>Select Building</option>
+                                <option value="Building A">Building A</option>
+                                <option value="Building B">Building B</option>
+                                <option value="Building 1">BUILDING 1</option>
+                                <option value="Building 2">BUILDING 2</option>
+                                <option value="Building 3">BUILDING 3</option>
+                                <option value="ElemBldg">Elementary Building</option>
+                                <option value="ProfBldg">Professional School Building</option>
+                                <option value="SFM">SFM</option>
+                                <option value="IS Building A">IS Building-A</option>
+                                <option value="MAIN">MAIN</option>
+                                <option value="SOM">SOM</option>
+                                <option value="TESDC Building">TESDC Building</option>
+                            </select>
                         </td>
                         <td class="px-4 py-2 border border-gray-300">
-                            <input type="text" class="border rounded p-1 w-full" value="${value.room_floor}" />
+                            <select id="floor" required>
+                                <option value="" disabled selected>Select Floor</option>
+                                <option value="B1">Basement 1</option>
+                                <option value="B2">Basement 2</option>
+                                <option value="B3">Basement 3</option>
+                                <option value="B4">Basement 4</option>
+                                <option value="ground">Ground</option>
+                                <option value="1">1st</option>
+                                <option value="2">2nd</option>
+                                <option value="3">3rd</option>
+                                <option value="4">4th</option>
+                                <option value="5">5th</option>
+                                <option value="6">6th</option>
+                                <option value="7">7th</option>
+                                <option value="8">8th</option>
+                                <option value="9">9th</option>
+                                <option value="10">10th</option>
+                                <option value="11">11th</option>
+                                <option value="12">12th</option>
+                                <option value="13">13th</option>
+                                <option value="14">14th</option>
+                                <option value="15">15th</option>
+                                <option value="16">16th</option>
+                                <option value="17">17th</option>
+                                <option value="18">18th</option>
+                                <option value="19">19th</option>
+                                <option value="20">20th</option>
+                                <option value="21">21st</option>
+                                <option value="22">22nd</option>
+                                <option value="23">23rd</option>
+                                <option value="24">24th</option>
+                                <option value="25">25th</option>
+                            </select>
                         </td>
                         <td class="px-4 py-2 border border-gray-300">
                             <input type="text" class="border rounded p-1 w-full" value="${value.room_no}" />
@@ -177,7 +223,24 @@
                             <input type="text" class="border rounded p-1 w-full" value="${value.room_descr}" />
                         </td>
                         <td class="px-4 py-2 border border-gray-300">
-                            <input type="text" class="border rounded p-1 w-full" value="${value.room_type}" />
+                            <select id="room-type" name="room_type" required>
+                                <option value="" disabled selected>Select Room Type</option>
+                                <option value="Accreditation">Accreditation Room</option>
+                                <option value="Activity">Activity Room</option>
+                                <option value="Anatomy">Anatomy Laboratory</option>
+                                <option value="Asean">Asean Research Center</option>
+                                <option value="Automotive">Automotive Laboratory</option>
+                                <option value="AVR">AVR & Lecture Room</option>
+                                <option value="Biology">Biology Laboratory Room</option>
+                                <option value="Bodega">Bodega Room</option>
+                                <option value="Bookstore">Bookstore</option>
+                                <option value="Canteen">Canteen</option>
+                                <option value="Chemistry">Chemistry Laboratory</option>
+                                <option value="Clinic">Clinic</option>
+                                <option value="ClinicRoom">Clinic Room</option>
+                                <option value="CompLab">Computer Laboratory</option>
+                                <option value="Coordinators">Coordinator's Room</option>
+                            </select>
                         </td>
                         <td class="px-4 py-2 border border-gray-300">
                             <input type="text" class="border rounded p-1 w-full" value="${value.room_status}" />
@@ -190,6 +253,10 @@
                         </td>
                     </tr>
                 `);
+
+                $("#building").val(value.building_id);
+                $("#floor").val(value.room_floor);
+                $("#room-type").val(value.room_type);
             },
             error: function(xhr, status, error) {
                 console.error('Request failed:', error);
