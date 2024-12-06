@@ -54,11 +54,6 @@
                             <select id="year-term-from" class="w-full p-2 border border-gray-300 rounded">
                                 <option value="" disabled selected>Select Year</option>
                             </select>
-                            <span class="mx-2 font-bold">TO</span>
-                            <!-- Dropdown for Year To -->
-                            <select id="year-term-to" class="w-full p-2 border border-gray-300 rounded">
-                                <option value="" disabled selected>Select Year</option>
-                            </select>
                         </div>
                     </div>
                 </div>
@@ -135,76 +130,71 @@
         });
         const programOfferedDropdown = document.getElementById('program-offered');
         const yearFromDropdown = document.getElementById('year-term-from');
-        const yearToDropdown = document.getElementById('year-term-to');
 
         const curriculumYears = {
             BSCS: [
-                { from: "2004", to: "2005" },
-                { from: "2012", to: "2013" },
-                { from: "2018", to: "2019" }
+                { year: "2004 - 2005" },
+                { year: "2012 - 2013" },
+                { year: "2018 - 2019" }
             ],
             BSEE: [
-                { from: "1998", to: "1999" },
-                { from: "2002", to: "2003" },
-                { from: "2007", to: "2008" },
-                { from: "2012", to: "2013" },
-                { from: "2018", to: "2019" }
+                { year: "1998 - 1999" },
+                { year: "2002 - 2003" },
+                { year: "2007 - 2008" },
+                { year: "2012 - 2013" },
+                { year: "2018 - 2019" }
             ],
             BSECE: [
-                { from: "1998", to: "1999" },
-                { from: "2002", to: "2003" },
-                { from: "2007", to: "2008" },
-                { from: "2012", to: "2013" },
-                { from: "2018", to: "2019" }
+                { year: "1998 - 1999" },
+                { year: "2002 - 2003" },
+                { year: "2007 - 2008" },
+                { year: "2012 - 2013" },
+                { year: "2018 - 2019" }
             ],
-        GameDev: [
-                { from: "2015", to: "2016" },
-                { from: "2018", to: "2019" }
+            GameDev: [
+                { year: "2015 - 2016" },
+                { year: "2018 - 2019" }
             ],
             Entrep: [
-                { from: "2014", to: "2015" },
-                { from: "2018", to: "2019" }
+                { year: "2014 - 2015" },
+                { year: "2018 - 2019" }
             ],
             BSIE: [
-                { from: "1998", to: "1999" },
-                { from: "2002", to: "2003" },
-                { from: "2007", to: "2008" },
-                { from: "2012", to: "2013" },
-                { from: "2018", to: "2019" }
+                { year: "1998 - 1999" },
+                { year: "2002 - 2003" },
+                { year: "2007 - 2008" },
+                { year: "2012 - 2013" },
+                { year: "2018 - 2019" }
             ],
             BSIS: [
-                { from: "2015", to: "2016" },
-                { from: "2018", to: "2019" }
+                { year: "2015 - 2016" },
+                { year: "2018 - 2019" }
             ],
             BSIT: [
-                { from: "2015", to: "2016" },
-                { from: "2019", to: "2020" },
-                { from: "2020", to: "2021" }
+                { year: "2015 - 2016" },
+                { year: "2019 - 2020" },
+                { year: "2020 - 2021" }
             ]
-        }; 
+        };
 
-    programOfferedDropdown.addEventListener('change', function() {
-        const selectedProgram = this.value;
 
-        yearFromDropdown.innerHTML = '<option value="" disabled selected>Select</option>';
-        yearToDropdown.innerHTML = '<option value="" disabled selected>Select</option>';
+        programOfferedDropdown.addEventListener('change', function () {
+            const selectedProgram = this.value;
 
-        if (curriculumYears[selectedProgram]) {
-            curriculumYears[selectedProgram].forEach(year => {
 
-                const optionFrom = document.createElement('option');
-                optionFrom.value = year.from;
-                optionFrom.textContent = year.from;
-                yearFromDropdown.appendChild(optionFrom);
+    // Clear the dropdown
+    yearFromDropdown.innerHTML = '<option value="" disabled selected>Select</option>';
 
-                // Populate "Year To" dropdown
-                const optionTo = document.createElement('option');
-                optionTo.value = year.to;
-                optionTo.textContent = year.to;
-                yearToDropdown.appendChild(optionTo);
-            });
-        }
-    });
+    // Populate dropdown if the program exists in the data
+    if (curriculumYears[selectedProgram]) {
+        curriculumYears[selectedProgram].forEach(year => {
+            const option = document.createElement('option');
+            option.value = year.year;
+            option.textContent = year.year;
+            yearFromDropdown.appendChild(option);
+        });
+    }
+});
         </script>
     </div> 
 </body>
