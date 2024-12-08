@@ -31,6 +31,15 @@
                 <div class="form-group">Note: Enter school year information to check if class program is not having room assignment</div>
                 <!-- School Year -->
                 <div class="form-group">
+                    <label for="Course">Course</label>
+                    <select id="term" class="ml-2 p-1 border rounded w-20">
+                        <option value="" disabled selected>Select</option>
+                        <option value="1st">College of Infomatics and Computing Studies</option>
+                        <option value="2nd">Option 2</option>
+                        <option value="3nd">Option 3</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="sy">School Year - Term</label>
                     <div class="form-row">
                         <input type="text" id="sy" placeholder="Enter">
@@ -74,7 +83,7 @@
                         <td class="py-2 px-4 border text-center">Information Management (Lab)</td>
                         <td class="py-2 px-4 border text-center">1BSIT-3</td>
                         <td class="py-2 px-4 border text-center">College of Informatics and Computing Studies</td>
-                        <td class="py-2 px-4 border text-center">-----</td>
+                        <td class="py-2 px-4 border text-center">Information Technology</td>
                     </tr>
                     <tr class="text-gray-700 bg-white">
                         <td class="py-2 px-4 border text-center">-----</td>
@@ -131,7 +140,7 @@
             }
 
             // Fetch the navbar component
-            fetch('../Components/Navbar.html')
+            fetch('/Components/Navbar.html')
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('navbar-placeholder').innerHTML = data;
