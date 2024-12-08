@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Load Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <section class="section-header text-sm md:text-xl">
@@ -51,7 +52,7 @@
                             <th class="py-2 px-4 border" style="width: 200px;">DELETE</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="class-prog">
                         <tr class="text-gray-700 bg-white">
                             <td class="py-2 px-4 border text-center">CCC112-18 (Fundamentals of Programming Lecture)</td>
                             <td class="py-2 px-4 border text-center">1CICS_Pet</td>
@@ -60,7 +61,7 @@
                             <td class="py-2 px-4 border text-center">-----</td>
                             <td class="py-2 px-4 border text-center bi bi-trash"></td>
                         </tr>
-                        <tr class="text-gray-700 bg-white">
+                        <!-- <tr class="text-gray-700 bg-white">
                             <td class="py-2 px-4 border text-center">-----</td>
                             <td class="py-2 px-4 border text-center">-----</td>
                             <td class="py-2 px-4 border text-center">-----</td>
@@ -75,11 +76,59 @@
                             <td class="py-2 px-4 border text-center">-----</td>
                             <td class="py-2 px-4 border text-center">-----</td>
                             <td class="py-2 px-4 border text-center">-----</td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
         </form>
     </div>
+    <script>
+        $(document).ready(function() {
+            //PROGRAM LIST
+            $.ajax({
+                url: `http://localhost:3000/class-program/list`,
+                method: 'GET',
+                success: function(data) {
+                    var selectorElement = $('#class-prog')
+                    
+                    const options = data.map((item) => 
+                        `<tr class="text-gray-700 bg-white">
+                            <td class="py-2 px-4 border text-center">${item.subject_code} (${item.subject_title})</td>
+                            <td class="py-2 px-4 border text-center">${item.section}</td>
+                            <td class="py-2 px-4 border text-center">${item.room_no}</td>
+                            <td class="py-2 px-4 border text-center">${item.schedule} - ${new Date(item.time_from).toLocaleTimeString()} to ${new Date(item.time_to).toLocaleTimeString()}</td>
+                            <td class="py-2 px-4 border text-center">-----</td>
+                            <td class="py-2 px-4 border text-center bi bi-trash" id="delete-btn" data-id="${item.id}"></td>
+                        </tr>`
+                    ).join('');
+
+                    selectorElement.html(options)
+                },
+                error: function(xhr, status, error) {
+                    console.error('Request failed:', error);
+                }
+            });
+        })
+
+        $(document).on('click', '#delete-btn', function() {
+            const dataId = $(this).data('id');
+
+            if (confirm(`Are you sure you want to delete this?`)) {
+                $.ajax({
+                    url: `http://localhost:3000/class-program/delete`, 
+                    type: 'POST',
+                    data: {delete_id: dataId},
+                    success: function (response) {
+                        alert('Deleted successfully!');
+                        window.close()
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Failed to edit list:', error);
+                        alert('Failed to edit list.');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
 

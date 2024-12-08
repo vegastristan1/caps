@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Load Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div id="navbar-placeholder"></div>
@@ -32,16 +33,20 @@
                 <div class="form-group">
                     <label for="sy">School Year - Term</label>
                     <div class="form-row">
-                        <input type="text" id="sy" placeholder="Enter">
+                        <!-- <input type="text" id="sy" placeholder="Enter">
                         <span>to</span>
-                        <input type="text" id="sy2" placeholder="Enter">
+                        <input type="text" id="sy2" placeholder="Enter"> -->
                         <!-- Dropdown for selecting the semester -->
                         <select id="term" class="ml-2 p-1 border rounded w-20">
-                            <option value="1st">1st</option>
-                            <option value="2nd">2nd</option>
-                            <option value="3nd">3rd</option>
-                            <option value="4nd">Summer</option>
+                            <option value="1">1st</option>
+                            <option value="2">2nd</option>
+                            <option value="3">3rd</option>
+                            <option value="4">Summer</option>
                         </select>
+                    </div>
+                    <label>Select Curriculum</label>
+                    <div class="form-row" id="selector-curriculum">
+                        <!--  -->
                     </div>
                     <div class="form-row">
                     <div class="bi bi-arrow-clockwise">-Refresh</div>
@@ -50,14 +55,14 @@
                         <label for="viewall">View All</label>
                     </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="class-section">
                         <label for="sectiontoblock">Section to Block</label>
-                        <select id="sectiontoblock">
+                        <!-- <select id="sectiontoblock">
                             <option value="" disabled selected>Select</option>
                             <option value="a">Section 1</option>
                             <option value="b">Section 2</option>
                             <option value="c">Section 3</option>
-                        </select>
+                        </select> -->
                     </div>
                 </div>
                 
@@ -85,14 +90,14 @@
                         <td class="py-2 px-4 border text-center">1BSIT-1</td>
                         <td class="py-2 px-4 border text-center bi bi-trash"> DELETE</td>
                     </tr>
-                    <tr class="text-gray-700 bg-white">
+                    <!-- <tr class="text-gray-700 bg-white">
                         <td class="py-2 px-4 border text-center">1BSIT-2</td>
                         <td class="py-2 px-4 border text-center bi bi-trash"> DELETE</td>
                     </tr>
                     <tr class="text-gray-700 bg-white">
                         <td class="py-2 px-4 border text-center">1BSIT-3</td>
                         <td class="py-2 px-4 border text-center bi bi-trash"> DELETE</td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
                 
@@ -103,6 +108,58 @@
         <div id="table-container" class="mt-10"></div>
 
         <script>
+                //REQUEST AVAIL CURRICULUM
+                $.ajax({
+                    url: `http://localhost:3000/curriculum/list`,
+                    method: 'GET',
+                    success: function(data) {
+                        console.log(data)
+                        var selectorElement = $('#selector-curriculum')
+
+                        const options = data.map((item) => 
+                            `<option value="${item.id}">${item.description}</option>`
+                        ).join('');
+
+                        selectorElement.append(`
+                            <select id="curriculum" name="curriculum" class="ml-2 p-1 border rounded w-20">
+                                <option value="">Select </option> 
+                                ${options}
+                            </select>`
+                        )
+
+                         //DEFAULT VALUES
+                         $('#curriculum').val(9);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Request failed:', error);
+                    }
+                });
+
+             //REQUEST SECTIONS
+             $.ajax({
+                url: `http://localhost:3000/section/list`,
+                method: 'GET',
+                success: function(data) {
+                    var selectorElement = $('#class-section')
+
+                    const filtered = data.filter((item) => item.blocked == 0)
+
+                    const options = filtered.map((item) => 
+                        `<option value="${item.id}">${item.program_code}${item.id} S-${item.semester} Y-${item.stud_year} SY-${item.sy_desc}</option>`
+                    ).join('');
+
+                    selectorElement.append(`
+                        <select id="sections" name="sections" class="w-full p-2 border border-gray-300 rounded">
+                            <option value="">Section</option> 
+                            ${options}
+                        </select>`
+                    )
+                },
+                error: function(xhr, status, error) {
+                    console.error('Request failed:', error);
+                }
+            });
+
             // Function to fetch and insert the table from table-page.html
             function loadTable() {
                 console.log('Proceed button clicked, attempting to fetch the table...'); // Debug log

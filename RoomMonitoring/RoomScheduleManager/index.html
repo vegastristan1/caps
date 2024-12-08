@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Load Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -29,17 +30,17 @@
         </section>
 
         <div class="flex items-center">
-            <h1 class="text-lg font-semibold">
-                Room Number: <span class="font-bold">B235</span>
+            <h1 class="text-lg font-semibold" id="h1-app">
+                <!-- Room Number: <span class="font-bold">B235</span>
                 <span class="mr-16"></span>  
-                Location: <span class="font-bold">IS Building</span>
+                Location: <span class="font-bold">IS Building</span> -->
             </h1>
         </div>
         <div class="flex items-center justify-between">
-            <h1 class="text-lg font-semibold">
-                Total Capacity: <span class="font-bold">40</span>
+            <h1 class="text-lg font-semibold" id="h2-app">
+                <!-- Total Capacity: <span class="font-bold">40</span>
                 <span class="mr-24"></span> 
-                Floor: <span class="font-bold">IS Building-B/2nd</span>
+                Floor: <span class="font-bold">IS Building-B/2nd</span> -->
             </h1>
             
             
@@ -70,8 +71,8 @@
                         <th class="px-4 py-2 border border-orange-500 text-left" style="width: 200px;">Saturday</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="bg-white">
+                <tbody id="form-sched">
+                    <!-- <tr class="bg-white">
                         <td class="px-4 py-2 border border-gray-300"></td>
                         <td class="px-4 py-2 border border-gray-300"></td>
                         <td class="px-4 py-2 border border-gray-300"></td>
@@ -83,59 +84,17 @@
                         <td class="px-4 py-2 border border-gray-300"></td>
                         <td class="px-4 py-2 border border-gray-300"></td>
                         </td>
-                    </tr>
-                    <tr class="bg-white">
-                        <td class="px-4 py-2 border border-gray-300">
-                            8:00 am to 10:00 am
-                            1BSCS-1
-                            Intermediate Programming
-                            (CCC121-18)</td>
-                        <td class="px-4 py-2 border border-gray-300">
-                            8:00 am to 10:00 am
-                            1BSIT-2
-                            Intermediate Programming
-                            (CCC121-18)</td>
-                        <td class="px-4 py-2 border border-gray-300">
-                            8:00 am to 10:00 am
-                            1BSIT-5 FREE
-                            Intermediate Programming
-                            (CCC121-18)</td>
-                        <td class="px-4 py-2 border border-gray-300"></td>
-                        <td class="px-4 py-2 border border-gray-300">
-                            8:00 am to 10:00 am
-                            2BSIT-4 FREE
-                            Operating Systems
-                            (CIT222-18)</td>
-                        <td class="px-4 py-2 border border-gray-300"></td>
-                    </tr>
-                    <tr class="bg-white">
-                        <td class="px-4 py-2 border border-gray-300"></td>
-                        <td class="px-4 py-2 border border-gray-300">
-                            1:00 pm to 2:30 pm
-                            2BSIT-4 FREE
-                            Quantitative Methods
-                            (CIS223-18)
-                            1:00 pm to 2:30 pm
-                            2BSIT-4 FREE
-                            Quantitative Methods
-                            (CIT225-18)
-                        </td>
-                        <td class="px-4 py-2 border border-gray-300"></td>
-                        <td class="px-4 py-2 border border-gray-300">
-                            1:00 pm to 4:00 pm
-                            3BSIT-2
-                            Capstone Project 1
-                            (CIT321-18)</td>
-                        <td class="px-4 py-2 border border-gray-300"></td>
-                        <td class="px-4 py-2 border border-gray-300"></td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
         </div>
         <div class="flex items-center justify-end ">
-            <a href="AddReserve.html" style="background-color: #174069;"
-                class="bg-blue-900 text-white p-1 md:p-2 text-xs md:text-md flex items-center">+ Add Schedule
-            </a>
+            <button 
+                id="add-sched" 
+                style="background-color: #174069;"
+                class="bg-blue-900 text-white p-1 md:p-2 text-xs md:text-md flex items-center">
+                + Add Schedule
+            </button>
         </div>
         <div class="border-b-4 border-black my-4"></div>
 
@@ -146,6 +105,90 @@
         </div>
 
     <script>
+
+        $(document).ready(function () {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const program = urlParams.get('program');
+            const curriculum = urlParams.get('curriculum');
+            const term = urlParams.get('term');
+            const room = urlParams.get('room');
+
+            if (!program || !curriculum || !term || !room) {
+                alert(`Incomplete Search.`)
+                window.location.href= 'search.html'
+            }
+
+            const searchPayload = {
+                curriculum: curriculum,
+                term: term,
+                room: room
+            }
+
+            $.ajax({
+                url: `http://localhost:3000/assign-room/schedules`,
+                method: 'GET',
+                data: searchPayload,
+                success: function(data) {
+                    var schedBody = $('#form-sched')
+                    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+
+
+                    data.forEach((item) => {
+                        const rowHTML = days.map(day => {
+                            const timeFrom = new Date(item.time_from).toLocaleTimeString();
+                            const timeTo = new Date(item.time_to).toLocaleTimeString();
+
+                            if (day === item.day) {
+                                return `<td class="px-4 py-2 border border-gray-300">(${timeFrom}-${timeTo}) ${item.remarks}</td>`;
+                            } else {
+                                return `<td class="px-4 py-2 border border-gray-300"></td>`;
+                            }
+                        }).join(''); 
+                            
+                        schedBody.append(`
+                            <tr class="bg-white">
+                                ${rowHTML}
+                            </tr>
+                        `)
+                    })
+                    
+                },
+                error: function(xhr, status, error) {
+                    console.error('Request failed:', error);
+                }
+            });
+
+            $.ajax({
+                url: `http://localhost:3000/assign-room/room-list?edit_id=${room}`,
+                method: 'GET',
+                success: function(data) {
+                    var elem1 = $('#h1-app')
+                    var elem2 = $('#h2-app')
+                    var val = data[0]
+
+                    elem1.append(`
+                        Room Number: <span class="font-bold">${val.room_no}</span>
+                        <span class="mr-16"></span>  
+                        Location: <span class="font-bold">${val.building_id}</span>`
+                    )
+
+                    elem2.append(`
+                        Total Capacity: <span class="font-bold">${val.room_capacity}</span>
+                        <span class="mr-24"></span> 
+                        Floor: <span class="font-bold">${val.room_floor}</span>
+                    `)
+                },
+                error: function(xhr, status, error) {
+                    console.error('Request failed:', error);
+                }
+            });
+
+            $('#add-sched').click(function(e) {
+                window.location.href=`AddReserve.html?program=${program}`
+            })
+        })
+
         fetch('/Components/Navbar.html')
             .then(response => response.text())
             .then(data => {
@@ -154,7 +197,7 @@
                 var script = document.createElement('script');
                 script.src = '/Components/app.js';
                 document.body.appendChild(script);
-            });
+        });
     </script>
 </body>
 

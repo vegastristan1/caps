@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Load Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -44,35 +45,31 @@
                         <div class="left-column flex-1">
                             <div class="form-group mb-4">
                                 <label for="schoolYear" class="block font-bold text-sm">SCHOOL YEAR</label>
-                                <div class="flex space-x-2">
-                                    <input type="text" id="year" class="p-2 border border-gray-300 rounded" placeholder="Enter">
-                                    <input type="text" id="year" class="p-2 border border-gray-300 rounded" placeholder="Enter">
+                                <div class="flex space-x-2" id="search-selector-curriculum">
+                                    <!-- <input type="text" id="year" class="p-2 border border-gray-300 rounded" placeholder="Enter">
+                                    <input type="text" id="year" class="p-2 border border-gray-300 rounded" placeholder="Enter"> -->
                                 </div>
                             </div>
                         <div class="form-group">
-                            <label for="start-date">ACTIVITY DATE</label>
+                            <label for="start-date">DAY</label>
                             <div class="date-picker">
-                                <input type="date" id="start-date" placeholder="Start Date">
-                                <input type="date" id="end-date" placeholder="End Date">
+                                <!-- <input type="date" id="start-date" placeholder="Start Date"> -->
+                                <select id="day" name="day" class="w-full p-2 border border-gray-300 rounded">
+                                    <option value="">Select Day</option>
+                                    <option value="Monday">Monday</option>
+                                    <option value="Tuesday">Tuesday</option>
+                                    <option value="Wednesday">Wednesday</option>
+                                    <option value="Thursday">Thursday</option>
+                                    <option value="Friday">Friday</option>
+                                    <option value="Saturday">Saturday</option>
+                                </select>
+                                <!-- <input type="date" id="end-date" placeholder="End Date"> -->
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="room-numbers">
                             <label for="room-number">ROOM NUMBER</label>
-                            <input type="text" id="room-number" class="form-control" placeholder="Enter" list="room-numbers">
-                            <datalist id="room-numbers">
-                                <option value="101">
-                                <option value="102">
-                                <option value="103">
-                                <option value="104">
-                                <option value="105">
-                                <option value="106">
-                                <option value="107">
-                                <option value="108">
-                                <option value="109">
-                                <option value="110">
-                                <option value="111">
-                            </datalist>
+                            <!-- ROOM DROPDOWN -->
                         </div>
                         <div class="form-group mb-3">
                             <label for="notes" class="form-label">Others</label>
@@ -83,36 +80,125 @@
                     <div class="right-column">
                         <div class="form-group">
                             <label for="term">TERM</label>
-                            <select id="term">
-                                <option value="" disabled selected>Select Term</option>
-                                <option value="1st-Semester">1st Semester</option>
-                                <option value="2nd-Semester">2nd Semester</option>
-                                <option value="summer">Summer</option>
+                            <select id="term" name="term" class="w-full p-2 border border-gray-300 rounded">
+                                <option value="">Select Term</option>
+                                <option value="1st">1st</option>
+                                <option value="2nd">2nd</option>
+                                <option value="3rd">3rd</option>
+                                <option value="4th">4th</option>
+                                <option value="Summer">Summer</option>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="start-sched">RESERVATION TIME</label>
                             <div class="schedule-time">
-                                <input type="time" id="start-time" placeholder="Start time">
-                                <input type="time" id="end-time" placeholder="End time">
+                                <input type="time" id="start-time" name="time_from" placeholder="Start time">
+                                <input type="time" id="end-time" name="time_to" placeholder="End time">
                             </div>
                         </div>
                     </div>
                 </div>
             <div class="form-actions mt-8 flex justify-center space-x-4">
-                <a href="SaveReserve.html" class="px-6 py-2 bg-blue-900 text-white rounded-md">SAVE</a>
+                <button id="save-add-form" class="px-6 py-2 bg-blue-900 text-white rounded-md">SAVE</button>
                 <a href="AddReserve.html" class="px-6 py-2 bg-blue-900 text-white rounded-md">REFRESH</a>
             </div>   
             
-            
             <div class="fixed bottom-6 right-6">
-                <a href="index.html" type="submit" style="background-color: #aaa;"
+                <a href="search.html" style="background-color: #aaa;"
                     class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
                     Back
                 </a>
             </div>
 <script>
+    $(document).ready(function () {
+        $('#save-add-form').click(function(e) {
+            e.preventDefault()
+
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const program = urlParams.get('program'); 
+            
+            const formData = {
+                curriculum: $('#curriculum').val(),
+                room: $('#room').val(),
+                term: $('#term').val(),
+                day: $('#day').val(),
+                time_from: $('#start-time').val(),
+                time_to: $('#end-time').val(),
+                remarks: $('#notes').val(),
+                program: program
+            }
+
+                // Send AJAX request
+                if (confirm(`Are you sure you want to save this?`)) {
+                    $.ajax({
+                        url: `http://localhost:3000/assign-room/add-roomsched`, 
+                        type: 'POST',
+                        data: formData,
+                        success: function (response) {
+                            // alert('Edited successfully!');
+                            window.location.href = `index.html?program=${program}&curriculum=${$('#curriculum').val()}&term=${$('#term').val()}&room=${$('#room').val()}`
+                            console.log(response)
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Failed to edit list:', error);
+                            alert('Failed to edit list.');
+                    }
+                });
+            }
+        })
+       
+        //REQUEST AVAIL ROOMS
+        $.ajax({
+            url: `http://localhost:3000/assign-room/room-list`,
+            method: 'GET',
+            success: function(data) {
+                var selectorElement = $('#room-numbers')
+
+                const options = data.map((item) => 
+                    `<option value="${item.id}">${item.building_id} - ${item.room_no}</option>`
+                ).join('');
+
+                selectorElement.append(`
+                    <select id="room" name="room" class="w-full p-2 border border-gray-300 rounded">
+                        <option value="">Select Available Room</option> 
+                        ${options}
+                    </select>`
+                )
+            },
+            error: function(xhr, status, error) {
+                console.error('Request failed:', error);
+            }
+        });
+
+        //REQUEST AVAIL CURRICULUM
+        $.ajax({
+            url: `http://localhost:3000/curriculum/list`,
+            method: 'GET',
+            success: function(data) {
+                console.log(data)
+                var selectorElement = $('#search-selector-curriculum')
+
+                const options = data.map((item) => 
+                    `<option value="${item.id}">${item.description}</option>`
+                ).join('');
+
+                selectorElement.append(`
+                    <select id="curriculum" name="curriculum" class="w-full p-2 border border-gray-300 rounded">
+                        <option value="">Select </option> 
+                        ${options}
+                    </select>`
+                )
+            },
+            error: function(xhr, status, error) {
+                console.error('Request failed:', error);
+            }
+        });
+    })
+
+ 
+
     fetch('../../Components/Navbar.html')
         .then(response => response.text())
         .then(data => {
