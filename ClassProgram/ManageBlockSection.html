@@ -31,19 +31,15 @@
             <form action="#">
                 <!-- School Year -->
                 <div class="form-group">
-                    <label for="sy">School Year - Term</label>
+                    <!-- <label for="sy">School Year - Term</label>
                     <div class="form-row">
-                        <!-- <input type="text" id="sy" placeholder="Enter">
-                        <span>to</span>
-                        <input type="text" id="sy2" placeholder="Enter"> -->
-                        <!-- Dropdown for selecting the semester -->
                         <select id="term" class="ml-2 p-1 border rounded w-20">
                             <option value="1">1st</option>
                             <option value="2">2nd</option>
                             <option value="3">3rd</option>
                             <option value="4">Summer</option>
                         </select>
-                    </div>
+                    </div> -->
                     <label>Select Curriculum</label>
                     <div class="form-row" id="selector-curriculum">
                         <!--  -->
@@ -69,7 +65,7 @@
                 
                 <!-- Proceed Button -->
                 <div class="form-actions">
-                    <button type="button" onclick="loadTable()">Show Report</button>
+                    <button type="button" onclick="loadTable()" id="show-report">Add</button>
                 </div>
         
         <!-- Table below the ADD Button -->
@@ -85,11 +81,11 @@
                         <th class="py-2 px-4 border">UNBLOCK</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="text-gray-700 bg-white">
+                <tbody id="list-block">
+                    <!-- <tr class="text-gray-700 bg-white">
                         <td class="py-2 px-4 border text-center">1BSIT-1</td>
                         <td class="py-2 px-4 border text-center bi bi-trash"> DELETE</td>
-                    </tr>
+                    </tr> -->
                     <!-- <tr class="text-gray-700 bg-white">
                         <td class="py-2 px-4 border text-center">1BSIT-2</td>
                         <td class="py-2 px-4 border text-center bi bi-trash"> DELETE</td>
@@ -141,11 +137,20 @@
                 method: 'GET',
                 success: function(data) {
                     var selectorElement = $('#class-section')
+                    var selectorElement2 = $('#list-block')
 
                     const filtered = data.filter((item) => item.blocked == 0)
+                    const filtered2 = data.filter((item) => item.blocked == 1)
 
                     const options = filtered.map((item) => 
                         `<option value="${item.id}">${item.program_code}${item.id} S-${item.semester} Y-${item.stud_year} SY-${item.sy_desc}</option>`
+                    ).join('');
+
+                    const options2 = filtered2.map((item) => 
+                        `<tr class="text-gray-700 bg-white">
+                            <td class="py-2 px-4 border text-center">${item.program_code}${item.id} S-${item.semester} Y-${item.stud_year} SY-${item.sy_desc}</td>
+                            <td class="py-2 px-4 border text-center bi bi-trash" id="rm-id" data-id="${item.id}">REMOVE</td>
+                        </tr>`
                     ).join('');
 
                     selectorElement.append(`
@@ -154,11 +159,59 @@
                             ${options}
                         </select>`
                     )
+
+                    selectorElement2.append(options2)
+
+                    $('#rm-id').click(function(e) {
+                e.preventDefault()
+                
+
+                const blockId = $(this).data('id')
+
+                if (confirm(`Are you sure you want to unblock this?`)) {
+                        $.ajax({
+                            url: `http://localhost:3000/section/update-block`, 
+                            type: 'POST',
+                            data: {update_id: blockId, blocked: 0},
+                            success: function (response) {
+                                alert('Updated successfully!');
+                                window.location.reload()
+                            },
+                            error: function (xhr, status, error) {
+                                console.error('Failed to edit list:', error);
+                                alert('Failed to edit list.');
+                            }
+                        });
+                        }
+                    })
                 },
                 error: function(xhr, status, error) {
                     console.error('Request failed:', error);
                 }
             });
+
+            $('#show-report').click(function(e) {
+                e.preventDefault()
+                
+
+                const blockId = $('#sections').val()
+
+                if (confirm(`Are you sure you want to block this?`)) {
+                    $.ajax({
+                        url: `http://localhost:3000/section/update-block`, 
+                        type: 'POST',
+                        data: {update_id: blockId, blocked: 1},
+                        success: function (response) {
+                            alert('Updated successfully!');
+                            window.location.reload()
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Failed to edit list:', error);
+                            alert('Failed to edit list.');
+                        }
+                    });
+                }
+            })
 
             // Function to fetch and insert the table from table-page.html
             function loadTable() {

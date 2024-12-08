@@ -10,6 +10,15 @@
     <!-- Load Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const isLoggedIn = localStorage.getItem('login') === 'true';
+            if (!isLoggedIn) {
+                localStorage.clear();
+                window.location.href = '/'; 
+            }
+        });
+    </script>
 </head>
 <body>
     <div id="navbar-placeholder"></div>

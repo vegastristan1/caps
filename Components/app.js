@@ -4,7 +4,16 @@ const sidebar = document.getElementById('sidebar');
 const sidebarHeaderContainer = document.getElementById('sidebarHeaderContainer');
 const mainContent = document.getElementById('mainContent');
 
+const users = localStorage.getItem('username')
 
+const logOut = document.getElementById('out-mo')
+logOut.addEventListener('click', () => {
+    localStorage.clear();
+    window.location.href = '/'
+})
+
+const userName = document.getElementById('mulberry')
+userName.append(`${users}`)
 
 // Collapse/expand sidebar and header on click
 collapseToggle.addEventListener('click', () => {
