@@ -16,7 +16,7 @@
             const isLoggedIn = localStorage.getItem('login') === 'true';
             if (!isLoggedIn) {
                 localStorage.clear();
-                window.location.href = '/caps'; 
+                window.location.href = '/caps';
             }
         });
     </script> -->
@@ -45,8 +45,8 @@
                     <button class="bi bi-arrow-clockwise"></button>
                     To Filter room display enter room number starts with
                     <input type="text" class="border rounded px-2 py-1 text-sm" placeholder="Room number" />
-                    and click  REFRESH to reload the page.
-                </h1>                        
+                    and click REFRESH to reload the page.
+                </h1>
             </div>
             <div class="flex items-center justify-end ">
                 <a href="create.html" style="background-color: #174069;"
@@ -72,52 +72,52 @@
                     </tr>
                 </thead>
                 <tbody id="room-list-table">
-                
+
                 </tbody>
             </table>
         </div>
         <div class="border-b-4 border-black my-4"></div>
 
 
-    <script>
-        fetch('/Components/Navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-placeholder').innerHTML = data;
-                // Load navbar script after inserting HTML
-                var script = document.createElement('script');
-                script.src = '/Components/app.js';
-                document.body.appendChild(script);
-        });
+        <script>
+            fetch('/Components/Navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-placeholder').innerHTML = data;
+                    // Load navbar script after inserting HTML
+                    var script = document.createElement('script');
+                    script.src = '/Components/app.js';
+                    document.body.appendChild(script);
+                });
 
-        $(document).ready(function() {
-            //REQUEST ROOM-LIST
-            $.ajax({
-            url: 'http://localhost:3000/assign-room/room-list',
-            method: 'GET',
-            success: function(data) {
-                console.log(data)
+            $(document).ready(function() {
+                //REQUEST ROOM-LIST
+                $.ajax({
+                    url: 'http://localhost:3000/assign-room/room-list',
+                    method: 'GET',
+                    success: function(data) {
+                        console.log(data)
 
-                var tableBody = $('#room-list-table');
+                        var tableBody = $('#room-list-table');
 
-                tableBody.empty();
-                
-                data.forEach(function(item) {
-                    var formattedDate = item.last_date_inspection ? new Date(item.last_date_inspection) : '';
-                    var subjectAssign = item.subject_assign > 0 ? `<a href="#" class="bi bi-check" style="color: green;"></a>` : `<a href="#" class="bi bi-x" style="color: red;"></a>`
-                    
-                    if (formattedDate) {
-                        var month = formattedDate.getMonth() + 1;
-                        var day = formattedDate.getDate();
-                        var year = formattedDate.getFullYear();
+                        tableBody.empty();
 
-                        month = month < 10 ? '0' + month : month;
-                        day = day < 10 ? '0' + day : day;
+                        data.forEach(function(item) {
+                            var formattedDate = item.last_date_inspection ? new Date(item.last_date_inspection) : '';
+                            var subjectAssign = item.subject_assign > 0 ? `<a href="#" class="bi bi-check" style="color: green;"></a>` : `<a href="#" class="bi bi-x" style="color: red;"></a>`
 
-                        formattedDate = `${month}-${day}-${year}`;
-                    }
-                    
-                    tableBody.append(`
+                            if (formattedDate) {
+                                var month = formattedDate.getMonth() + 1;
+                                var day = formattedDate.getDate();
+                                var year = formattedDate.getFullYear();
+
+                                month = month < 10 ? '0' + month : month;
+                                day = day < 10 ? '0' + day : day;
+
+                                formattedDate = `${month}-${day}-${year}`;
+                            }
+
+                            tableBody.append(`
                         <tr class="bg-white" id=rm-${item.id}>
                             <td class="px-4 py-2 border border-gray-300">${item.building_id || ''}</td>
                             <td class="px-4 py-2 border border-gray-300">${item.room_floor || ''}</td>
@@ -134,43 +134,43 @@
                             </td>
                         </tr>
                     `);
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Request failed:', error);
+                    }
                 });
-            },
-            error: function(xhr, status, error) {
-                console.error('Request failed:', error);
-            }
+
+
+                $('#room-list-table').on('click', '#delete-rm', function(e) {
+                    e.preventDefault();
+                    const roomId = $(this).data('id');
+
+                    if (confirm(`Are you sure you want to delete list ID ${roomId}?`)) {
+                        $.ajax({
+                            url: `http://localhost:3000/assign-room/delete-list?delete_id=${roomId}`,
+                            type: 'POST',
+                            success: function(response) {
+                                alert('Room deleted successfully!');
+                                $(`#rm-${roomId}`).remove(); // Remove the row from the table
+                            },
+                            error: function(xhr, status, error) {
+                                console.error('Failed to delete room:', error);
+                                alert('Failed to delete the room.');
+                            }
+                        });
+                    }
+                });
+
+
+                $('#room-list-table').on('click', '#edit-rm', function(e) {
+                    e.preventDefault();
+                    const roomId = $(this).data('id');
+
+                    window.location.href = `./edit.html?edit_id=${roomId}`
+                });
             });
-
-
-            $('#room-list-table').on('click', '#delete-rm', function (e) {
-                e.preventDefault();
-                const roomId = $(this).data('id');
-
-                if (confirm(`Are you sure you want to delete list ID ${roomId}?`)) {
-                    $.ajax({
-                        url: `http://localhost:3000/assign-room/delete-list?delete_id=${roomId}`, 
-                        type: 'POST',
-                        success: function (response) {
-                            alert('Room deleted successfully!');
-                            $(`#rm-${roomId}`).remove(); // Remove the row from the table
-                        },
-                        error: function (xhr, status, error) {
-                            console.error('Failed to delete room:', error);
-                            alert('Failed to delete the room.');
-                        }
-                    });
-                }
-            });
-
-
-            $('#room-list-table').on('click', '#edit-rm', function (e) {
-                e.preventDefault();
-                const roomId = $(this).data('id');
-                
-                window.location.href = `./edit.html?edit_id=${roomId}`
-            });
-        });
-    </script>
+        </script>
 </body>
 
 </html>
@@ -216,6 +216,7 @@
     .breadcrumb li:last-child::after {
         content: "";
     }
+
     .section-header {
         background-color: #174069;
         padding: 20px;
@@ -230,10 +231,8 @@
     }
 
     .icon-link {
-        margin-right: 15px; 
-        text-decoration: none; 
+        margin-right: 15px;
+        text-decoration: none;
         color: #000000;
     }
-
-
 </style>
