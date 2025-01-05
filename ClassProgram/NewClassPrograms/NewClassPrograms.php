@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Class Programs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Load Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Load Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="../../styles.css"> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <!-- Navbar placeholder -->
+    <nav id="navbar-placeholder">
+        <p>Loading navbar...</p>
+    </nav>
+
+    <div class="main-content" id="mainContent">
+        <nav aria-label="breadcrumb" class="breadcrumb-nav">
+            <ul class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Enrollment</a></li>
+                <li><a href="#">Class Program</a></li>
+                <li class="active">New Class Programs/Sections Page</li>
+            </ul>
+        </nav>
+        <section class="section-header text-sm md:text-xl">
+            <h1>NEW CLASS PROGRAMS/SECTIONS</h1>
+        </section>
+
+        <!-- Form container -->
+        <div class="form-container">
+            <div class="checkbox-container flex items-center">
+                <input type="checkbox" id="international" class="mr-2">
+                <label for="international">Check for International/Additional subject offerings/schedules (offerings for all courses)</label>
+            </div>
+            <form action="#">
+                <!-- Two-column layout for form fields -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Left column inputs -->
+                    <div>
+                        <div class="form-group" id="selector-prog">
+                            <label for="courseprog">Course Program (Optional to Select)</label>
+                            <select id="building">
+                                <option value="" disabled selected>Select a Program</option>
+                                <option value="Baccalaureate">Baccalaureate</option>
+                                <option value="Doctoral">Doctoral</option>
+                                <option value="ETEEAP">Expanded Tiertiary Education Equivalency & Accreditation Program</option>
+                                <option value="Masteral">Masteral</option>
+                                <option value="OOU">Open/Online University</option>
+                                <option value="F">Post Baccalaureate</option>
+                                <option value="G">Pre-Baccalaureate</option>
+                                <option value="H">Technical Education and Skills Development Center</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="search-selector-curriculum">
+                            <label for="curryear">Curriculum Year</label>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="year">Year</label>
+                            <select id="year" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="1">1st</option>
+                                <option value="2">2nd</option>
+                                <option value="3">3rd</option>
+                                <option value="4">4th</option>
+                                <option value="5">5th</option>
+                                <option value="6">6th</option>
+                                <option value="7">7th</option>
+                                <option value="8">8th</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="major">Major</label>
+                            <select id="major">
+                                <option value="" disabled selected>Select</option>
+                                <option value="major1">Major 1</option>
+                                <option value="major2">Major 2</option>
+                            </select>
+                        </div>
+
+                        <div class="flex">
+                            <div class="label label-input" style="flex-grow: 1;">
+                                <label for="classprogramsy1">Class Program for SY</label>
+                                <input type="text" id="classprogramsy1" placeholder="Enter" required>
+                            </div>
+                            <div class="label label-input" style="flex-grow: 0.2;">
+                                <span>-</span>
+                                <input type="text" id="classprogramsy2" placeholder="Enter" required>
+                            </div>
+                            <div class="label label-input" style="flex-grow: 0.4;">
+                                <label for="semester">Semester</label>
+                                <select id="semester" required>
+                                    <option value="" disabled selected>Select</option>
+                                    <option value="1">1st Semester</option>
+                                    <option value="2">2nd Semester</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="flex">
+                            <div class="label label-input" style="flex-grow: 1;">
+                                <label for="filtersub" style="font-size: 12px;">Filter Sub Code</label>
+                                <input type="text" id="plain-input" placeholder="Enter">
+                            </div>
+                            <div class="label label-input" style="flex-grow: 0.1; display: flex; flex-direction: column;">
+                                <label style="font-size: 8px;">Click to show Subjects</label>
+                                <a href="#" onclick="openPopup2()" class="showsub text-center bg-blue-500 text-white px-2 py-1 rounded" style="margin-top: 8px; font-size: 14px;">
+                                    Show Subjects
+                                </a>
+                            </div>
+                            <div class="label label-input" style="flex-grow: 0.1; display: flex; flex-direction: column;">
+                                <label style="font-size: 8px;">Show Class Prgms With Details</label>
+                                <a href="#" onclick="openPopup1()" class="showsub text-center bg-blue-500 text-white px-2 py-1 rounded" style="margin-top: 8px;">
+                                    Show Details
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Align Subject -->
+                        <div class="form-group" id="subject">
+                            <label for="subject">Subject</label>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="subjec-title" id="subject-title">Subject Title:</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="subjectofferingtype">Subject Offering Type</label>
+                            <select id="subjectofferingtype" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="regular">Regular Subject</option>
+                                <option value="irregular">Irregular Subject</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="subjectcreatedby">Subject created by College:</label>
+                            <span id="subjectcreatedby">College of </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="schedulecreated">Schedule Created by Department</label>
+                            <span id="label-department"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="schedulewk">Schedule (M-T-W-TH-F-SAT-SUN)</label>
+                            <input type="text" id="schedulecode" placeholder="Enter" required>
+                        </div>
+                        <div class="form-group" id="room-numbers">
+                            <label for="roomno">Room No</label>
+
+                        </div>
+                    </div>
+
+                    <!-- Right column inputs -->
+                    <div>
+                        <div class="form-group" id="selector-program">
+                            <label for="offeringscourses">Offerings for Course</label>
+
+                        </div>
+
+                        <div class="empty-row"></div>
+                        <div class="empty-row"></div>
+                        <div class="empty-row"></div>
+
+                        <!-- Align Section directly below Term, right-aligned -->
+                        <div class="form-group">
+                            <label for="section">Lecture or Laboratory</label>
+                            <select id="leclab" required>
+                                <!-- <option value="" disabled selected>Select</option> -->
+                                <option value="LEC">Lecture</option>
+                                <option value="LAB">Laboratory</option>
+                            </select>
+                        </div>
+                        <div class="checkbox-container flex items-center">
+                            <input type="checkbox" id="requestedsub" class="mr-2" style="margin-top: 5px;">
+                            <label for="requestedsub">Is Requested Subject?</label>
+                        </div>
+                        <div class="form-group" id="class-section" style="margin-top: 10px;">
+                            <label for="section">Section</label>
+                            <!-- <select id="section" required>
+                                <option value="" disabled selected>Select Section</option>
+                                <option value="A">1BSIT-1</option>
+                                <option value="B">1BSIT-2</option>
+                                <option value="C">1BSIT-3</option>
+                                <option value="D">1BSIT-4</option>
+                            </select> -->
+                            <div class="flex-container" style="flex-grow: 0.2; display: flex; flex-direction: row; gap: 10px">
+                                <a href="#" onclick="openPopup()" class="bi bi-pencil-square" style="margin-top: 7px;">
+                                    -Click to edit sections
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subjectcategory">Subject Category:</label>
+                            <span id="subject_cat">CCS Computer Laboratory</span>
+                        </div>
+                        <div class="form-group" style="display: flex; gap: 10px; align-items: center;">
+                            <div>
+                                <label for="time-input-1" style="margin-top: 23px;">Time From</label>
+                                <input type="time" id="time-input-1" name="time-input-1" required>
+                            </div>
+                            <div>
+                                <label for="time-input-2" style="margin-top: 23px;">Time To</label>
+                                <input type="time" id="time-input-2" name="time-input-2" required>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+            <div class="flex items-center justify-end">
+                <button href="#" id="add-button" style="background-color: #174069; width: 120px;"
+                    class="bg-blue-900 text-white px-3 py-3 text-sm flex items-center justify-center">+ Add
+                </button>
+            </div>
+        </div>
+
+        <script>
+            // Load navbar dynamically
+            (function loadNavbar() {
+                fetch('../../Components/Navbar.php')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Navbar.html does not exist or is inaccessible');
+                        }
+                        return response.text();
+                    })
+                    .then(html => {
+                        document.getElementById('navbar-placeholder').innerHTML = html;
+
+                        // Dynamically load app.js if not already loaded
+                        if (!document.querySelector('script[src="../../Components/app.js"]')) {
+                            const script = document.createElement('script');
+                            script.src = '../../Components/app.js';
+                            script.defer = true;
+                            document.body.appendChild(script);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error loading navbar:', error);
+                        document.getElementById('navbar-placeholder').innerHTML =
+                            '<p style="color: red; text-align: center;">Navbar could not be loaded.</p>';
+                    });
+            })();
+
+            $(document).ready(function() {
+                $('#add-button').click(function() {
+                    var getDate = new Date()
+                    var formattedDate = getDate.toISOString().split('T')[0]
+
+                    var prog = $('#prog').val()
+                    var curriculum = $('#curriculum').val()
+                    var year = $('#year').val()
+                    var major = $('#major').val()
+                    var classprogsy1 = $('#classprogramsy1').val()
+                    var classprogsy2 = $('#classprogramsy2').val()
+                    var semester = $('#semester').val()
+                    var subject_code = $('#subject-code').val()
+                    var subject_title = $('#subject-title').text().split(':')[1]
+                    var subject_offering_type = $('#subjectofferingtype').val()
+                    var subject_created_by = $('#subjectcreatedby').text()
+                    var label_department = $('#label-department').text()
+                    var schedule_code = $('#schedulecode').val()
+                    var room = $('#room').val()
+                    var program = $('#program').val()
+                    var lec_lab = $('#leclab').val()
+                    var requested_sub = $('#requestedsub').is(':checked') ? 1 : 0
+                    var section = $('#sections').val()
+                    var subject_category = $('#subject_cat').text()
+                    var time_from = $('#time-input-1').val() || '00:00'
+                    var time_to = $('#time-input-2').val() || '00:00'
+
+                    const payloads = {
+                        additional: 0,
+                        prog,
+                        curriculum,
+                        year,
+                        major,
+                        classprogsy1,
+                        classprogsy2,
+                        semester,
+                        subject_code,
+                        subject_title,
+                        subject_offering_type,
+                        subject_created_by,
+                        label_department,
+                        schedule_code,
+                        room,
+                        program,
+                        lec_lab,
+                        requested_sub,
+                        section,
+                        subject_category,
+                        time_from: `${formattedDate} ${time_from}:00`,
+                        time_to: `${formattedDate} ${time_to}:00`
+                    }
+
+                    if (Object.values(payloads).some(value => value === "" || value === null || value === undefined)) {
+                        alert(`Please check form you have empty value.`)
+                    } else {
+                        // Send AJAX request
+                        if (confirm(`Are you sure you want to save this?`)) {
+                            $.ajax({
+                                url: `http://localhost:3000/class-program/add-program`,
+                                type: 'POST',
+                                data: payloads,
+                                success: function(response) {
+                                    alert('Added successfully!');
+                                    window.location.reload()
+                                    // console.log(response)
+                                },
+                                error: function(xhr, status, error) {
+                                    console.error('Failed to edit list:', error);
+                                    alert('Failed to edit list.');
+                                }
+                            });
+                        }
+                    }
+                })
+
+                //REQUEST AVAIL ROOMS
+                $.ajax({
+                    url: `http://localhost:3000/assign-room/room-list`,
+                    method: 'GET',
+                    success: function(data) {
+                        var selectorElement = $('#room-numbers')
+
+                        const options = data.map((item) =>
+                            `<option value="${item.id}">${item.building_id} - ${item.room_no}</option>`
+                        ).join('');
+
+                        selectorElement.append(`
+                            <select id="room" name="room" class="w-full p-2 border border-gray-300 rounded">
+                                <option value="">Select Available Room</option> 
+                                ${options}
+                            </select>`)
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Request failed:', error);
+                    }
+                });
+
+                //REQUEST SECTIONS
+                $.ajax({
+                    url: `http://localhost:3000/section/list`,
+                    method: 'GET',
+                    success: function(data) {
+                        var selectorElement = $('#class-section')
+
+                        const options = data.map((item) =>
+                            `<option value="${item.id}">Y-${item.stud_year} ${item.program_code} S-${item.semester} SY-${item.sy_desc}</option>`
+                        ).join('');
+
+                        selectorElement.append(`
+                            <select id="sections" name="sections" class="w-full p-2 border border-gray-300 rounded">
+                                <option value="">Section</option> 
+                                ${options}
+                            </select>`)
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Request failed:', error);
+                    }
+                });
+
+                //REQUEST AVAIL CURRICULUM
+                $.ajax({
+                    url: `http://localhost:3000/curriculum/list`,
+                    method: 'GET',
+                    success: function(data) {
+                        console.log(data)
+                        var selectorElement = $('#search-selector-curriculum')
+
+                        const options = data.map((item) =>
+                            `<option value="${item.id}">${item.description}</option>`
+                        ).join('');
+
+                        selectorElement.append(`
+                            <select id="curriculum" name="curriculum" class="w-full p-2 border border-gray-300 rounded">
+                                <option value="">Select </option> 
+                                ${options}
+                            </select>`)
+
+                        //DEFAULT VALUES
+                        $('#curriculum').val(9);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Request failed:', error);
+                    }
+                });
+
+                //PROGRAM LIST
+                $.ajax({
+                    url: `http://localhost:3000/program/program-list`,
+                    method: 'GET',
+                    success: function(data) {
+                        console.log(data)
+                        var selectorElement = $('#selector-program')
+
+                        const options = data.map((item) =>
+                            `<option value="${item.program_code}">${item.description}</option>`
+                        ).join('');
+
+                        selectorElement.append(`
+                            <select id="program" name="program" class="w-full p-2 border border-gray-300 rounded">
+                                <option value=''>Select Program</option> 
+                                ${options}
+                            </select>`)
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Request failed:', error);
+                    }
+                });
+
+                //PROG LIST
+                $.ajax({
+                    url: `http://localhost:3000/prog/list`,
+                    method: 'GET',
+                    success: function(data) {
+                        console.log(data)
+                        var selectorElement = $('#selector-prog')
+
+                        const options = data.map((item) =>
+                            `<option value="${item.id}">${item.description}</option>`
+                        ).join('');
+
+                        selectorElement.append(`
+                            <select id="prog" name="prog" class="w-full p-2 border border-gray-300 rounded">
+                                <option value=''>Select Program</option> 
+                                ${options}
+                            </select>`)
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Request failed:', error);
+                    }
+                });
+
+                //STORE SUBJECT LIST
+                let globalSubject = []
+
+                //SUBJECT LIST
+                $.ajax({
+                    url: `http://localhost:3000/subject/list`,
+                    method: 'GET',
+                    success: function(data) {
+                        globalSubject.push(...data)
+                        var selectorElement = $('#subject')
+
+                        const options = data.map((item) =>
+                            `<option value="${item.id}">${item.subject_code}</option>`
+                        ).join('');
+
+                        selectorElement.append(`
+                            <select id="subject-code" name="subject-code" class="w-full p-2 border border-gray-300 rounded">
+                                <option value=''>Select Subject</option> 
+                                ${options}
+                            </select>`)
+
+                        const queryString = window.location.search;
+                        const urlParams = new URLSearchParams(queryString);
+                        const program = urlParams.get('selected_subjcode') || null;
+
+                        if (program) {
+                            const found = data.find((item) => item.id == program)
+
+                            if (found) {
+                                $('#subjectofferingtype').val(`${found.subject_offering}`)
+                                $('#subject-code').val(found.id)
+                                $('#subject-title').empty().append(`Subject Title: ${found.subject_desc}`)
+                                $('#subjectcreatedby').empty().append(`<span>College of ${found.college}</span>`)
+                                $('#label-department').empty().append(`${found.department}`)
+                            }
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Request failed:', error);
+                    }
+                });
+
+                $('#plain-input').change(function(e) {
+                    const value = $(this).val()
+
+                    const found = globalSubject.find((item) => item.subject_code == value)
+
+                    if (found) {
+                        $('#subjectofferingtype').val(`${found.subject_offering}`)
+                        $('#subject-code').val(found.id)
+                        $('#subject-title').empty().append(`Subject Title: ${found.subject_desc}`)
+                        $('#subjectcreatedby').empty().append(`<span>College of ${found.college}</span>`)
+                        $('#label-department').empty().append(`${found.department}`)
+                    }
+                })
+
+                //DEFAULT VALUES
+                $('#curriculum').val(9);
+                $('#classprogramsy1').val('2024');
+                $('#classprogramsy2').val('2025');
+            })
+
+            // Function to validate form fields
+            function validateForm(event) {
+                event.preventDefault(); // Prevent form submission
+
+                // Get all form inputs
+                const courseProg = document.getElementById('building').value;
+                const currYear = document.getElementById('curryear').value;
+                const year = document.getElementById('year').value;
+                const classProgramSY1 = document.getElementById('classprogramsy1').value;
+                const classProgramSY2 = document.getElementById('classprogramsy2').value;
+                const semester = document.getElementById('semester').value;
+                const subject = document.getElementById('subject').value;
+                const subjectOfferingType = document.getElementById('subjectofferingtype').value;
+                const scheduleWK = document.getElementById('schedulewk').value;
+                const timeInput1 = document.getElementById('time-input-1').value;
+                const timeInput2 = document.getElementById('time-input-2').value;
+
+                let errorMessage = '';
+
+                // Validate required fields
+                if (!courseProg || !currYear || !year || !classProgramSY1 || !classProgramSY2 || !semester || !subject || !subjectOfferingType) {
+                    errorMessage += 'Please fill in all required fields.\n';
+                }
+
+                // Separate validation for schedule and time inputs
+                if (!scheduleWK || !timeInput1 || !timeInput2) {
+                    errorMessage += 'Please provide the schedule and time details.\n';
+                }
+
+                // Show error message if validation fails
+                if (errorMessage) {
+                    alert(errorMessage);
+                } else {
+                    alert('Form submitted successfully!'); // Notify successful validation
+                    // Here, you can submit the form or perform further actions
+                    // For now, we'll just reset the form (optional)
+                    document.querySelector('.form-container form').reset(); // Reset the form after submission
+                }
+            }
+
+            // Function to update end year based on curriculum year selection
+            function updateEndYear() {
+                const currYearSelect = document.getElementById('curryear');
+                const endYearInput = document.getElementById('curryear-end');
+                const startYear = parseInt(currYearSelect.value);
+                if (startYear) {
+                    endYearInput.value = startYear + 1; // Set end year as start year + 1
+                } else {
+                    endYearInput.value = ""; // Clear if no selection
+                }
+            }
+
+            // Attach validation function to the form's submit event
+            document.querySelector('.form-container form').addEventListener('submit', validateForm);
+
+            function openPopup() {
+                // URL of the page you want to open
+                const url = 'SectionEditor.html'; // Replace with your popup page URL
+                const options = 'width=1200,height=800,resizable=yes,scrollbars=yes'; // Customize the dimensions
+                window.open(url, 'PopupWindow', options);
+            }
+
+            function openPopup1() {
+                // URL of the page you want to open
+                const url = 'ClassProgramsWithDetails.html'; // Replace with your popup page URL
+                const options = 'width=1200,height=800,resizable=yes,scrollbars=yes'; // Customize the dimensions
+                window.open(url, 'PopupWindow', options);
+            }
+
+            function openPopup2() {
+                // URL of the page you want to open
+                const url = 'SubjectFiltered.html'; // Replace with your popup page URL
+                const options = 'width=1200,height=800,resizable=yes,scrollbars=yes'; // Customize the dimensions
+                window.open(url, 'PopupWindow', options);
+            }
+        </script>
+
+</body>
+
+</html>
+
+<!-- CSS styling -->
+<style scoped>
+    /* Breadcrumb styles */
+    .breadcrumb-nav {
+        margin: 0;
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+
+    .breadcrumb {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+    }
+
+    .breadcrumb li {
+        margin-right: 10px;
+    }
+
+    .breadcrumb li a {
+        color: #174069;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .breadcrumb li a:hover {
+        color: #20568B;
+    }
+
+    .breadcrumb li.active {
+        color: orange;
+        pointer-events: none;
+    }
+
+    .breadcrumb li::after {
+        content: ">";
+        margin-left: 10px;
+        color: #174069;
+    }
+
+    .breadcrumb li:last-child::after {
+        content: "";
+    }
+
+    /* Section Header */
+    .section-header {
+        background-color: #174069;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .section-header h1 {
+        color: white;
+        margin: 0;
+    }
+
+    /* Form styles */
+    .form-container {
+        width: 80%;
+        margin: 40px auto;
+        background-color: #f4f8fc;
+        padding: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .form-group half {
+        width: 50%;
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .label {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .label input,
+    .label select {
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 100%;
+        /* Ensure inputs take up full width inside their containers */
+    }
+
+    .flex {
+        display: flex;
+        gap: 5px;
+        /* Maintain close proximity between elements */
+        flex-wrap: nowrap;
+        /* Prevent wrapping */
+        width: 100%;
+        /* Ensure the flex container is responsive */
+    }
+
+
+    .ml-1 {
+        margin-left: 0;
+        /* Remove any additional left margin */
+        flex-grow: 1;
+        /* Allow input fields to grow as needed */
+    }
+
+    .flex-grow {
+        flex-grow: 1;
+    }
+
+    .empty-row {
+        height: 75px;
+        /* Adjust the height as needed */
+    }
+
+
+
+    input[readonly] {
+        background-color: #aaa7a7;
+        /* Light gray background for readonly input */
+    }
+
+    /* Checkboxes */
+    .checkbox-wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .checkbox-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .checkbox-container input {
+        margin-right: 5px;
+    }
+
+    /* Button styles */
+    .form-actions button {
+        padding: 12px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .showsub {
+        padding: 12px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #174069;
+        /* Blue background */
+        color: white;
+        /* White text */
+        width: 150px;
+        /* Adjust button width */
+        height: 45px;
+        /* Adjust button height */
+    }
+
+    .showsub:hover {
+        background-color: #0056b3;
+        /* Darker blue on hover */
+    }
+
+    .flex-container {
+        display: flex;
+        align-items: left;
+        justify-content: flex-start;
+        margin-top: 10px;
+    }
+
+    /* Make the time inputs stack vertically */
+    .form-group#time-group {
+        display: flex;
+        flex-direction: column;
+        /* Stack items vertically */
+        gap: 10px;
+        /* Space between Time From and Time To */
+    }
+
+    .form-group#time-group div {
+        display: flex;
+        flex-direction: column;
+        /* Ensure each label and input is stacked vertically */
+    }
+
+    .form-group#time-group label {
+        margin-bottom: 5px;
+    }
+
+    .form-group#time-group input {
+        width: 100%;
+    }
+</style>
